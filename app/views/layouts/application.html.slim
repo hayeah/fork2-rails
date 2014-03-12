@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Fork2
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+body
+  nav class="navbar navbar-default" role="navigation"
+    div class="navbar-header"
+      a class="navbar-brand" href="/"
+        | Fork2
+  .container
+    = yield

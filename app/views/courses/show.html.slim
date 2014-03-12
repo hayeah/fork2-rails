@@ -1,0 +1,170 @@
+.row.course-progress
+  .col-md-12
+    h1 Ruby Bootcamp - Mongoid Clone
+
+    div class="alert alert-success"
+      b Announcement:
+      |  On Saturday 9:00pm, we'll have live-coding session with Terry Tai
+
+  .course-progress-sidebar.col-md-4.pull-right
+    h5 Check-in
+
+    ul.course-progress-checkins
+      li
+        .mugshot= image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+        .body
+          b Lesson 1 - Explore Mongoid
+          .timestamp Completed 24m ago
+
+      li
+        .mugshot= image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+        .body
+          b Lesson 1 - Explore Mongoid
+          .timestamp Completed 24m ago
+
+      li
+        .mugshot= image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+        .body
+          b Lesson 1 - Explore Mongoid
+          .timestamp Completed 24m ago
+
+      li
+        .mugshot= image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+        .body
+          b Lesson 1 - Explore Mongoid
+          .timestamp Completed 24m ago
+
+    h5 Group WeChat
+    .row.wechat-group
+      .col-md-8
+        .qr-code= image_tag("/qr.jpg")
+
+
+  .col-md-8
+    .lesson-grid
+      .lesson-grid-week w1
+      .lesson-grid-day.done
+        a href="#lesson-1-explore-mongoid" data-toggle="tooltip" data-placement="top" title="Explore Mongoid"
+          | 1
+      .lesson-grid-day.todo
+        a href="#lesson-2-basic-document" data-toggle="tooltip" data-placement="top" title="Basic Document"
+          | 2
+      .lesson-grid-day.todo
+        a href="#lesson-2-basic-document" data-toggle="tooltip" data-placement="top" title="Basic Document"
+          | 3
+      .lesson-grid-day
+        a href="#lesson-3-writing-rspec" data-toggle="tooltip" data-placement="top" title="Writing RSpec"
+          | 4
+      .lesson-grid-day 5
+      .lesson-grid-day 6
+      .lesson-grid-day 7
+
+    .lesson-grid
+      .lesson-grid-week w2
+      .lesson-grid-day 1
+      .lesson-grid-day 2
+      .lesson-grid-day 3
+      .lesson-grid-day 4
+      .lesson-grid-day 5
+      .lesson-grid-day 6
+      .lesson-grid-day 7
+
+    .lesson-grid
+      .lesson-grid-week w3
+      .lesson-grid-day 1
+      .lesson-grid-day 2
+      .lesson-grid-day 3
+      .lesson-grid-day 4
+      .lesson-grid-day 5
+      .lesson-grid-day 6
+      .lesson-grid-day 7
+
+
+    .panel.panel-default.lesson#lesson-1-explore-mongoid
+      .panel-heading
+        .span class="glyphicon glyphicon-ok"
+        a href="https://github.com/hayeah/ruby-bootcamp-mongoid/blob/master/01-explore-mongoid.md"
+          |  Lesson 1 - Explore Mongoid
+        .clearfix
+      .panel-body
+        div
+          | Mongoid is a mature project, with 289 contributors. Today we'll look at some of the tools that the project uses, as well as read some of the code to see how a large & complicated project is structured.
+
+        span.lesson-participants.pull-right
+          = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+          = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+          = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+
+
+
+
+    .panel.panel-default#lesson-2-basic-document
+      .panel-heading
+        .lesson-today-flag.span class="glyphicon glyphicon-flag"
+        a href="https://github.com/hayeah/ruby-bootcamp-mongoid/blob/master/02-basic-document.md"
+          |  Lesson 2 - Basic Document
+      .panel-body
+        div class="alert alert-success"
+          b Announcement:
+          |  You now have two days to work on lesson 2
+        div class="alert alert-info"
+          b Info:
+          |  RSpecs are at
+          a href="https://github.com/hayeah/my_mongoid_spec" &nbsp; https://github.com/hayeah/my_mongoid_spec
+        div
+          ul
+            li Use Mongoid to model Github Event.
+            li Read Mongoid code.
+            li Implement a simple Document model for MyMongoid.
+
+        a class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+          | Check In
+
+        span.lesson-participants.pull-right
+          = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+          = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+
+    .panel.panel-default#lesson-3-writing-rspec
+      .panel-heading
+        a href="https://github.com/hayeah/ruby-bootcamp-mongoid/blob/master/03-rspec-and-ci.md"
+          | Lesson 3 - Writing RSpec
+      .panel-body
+        | RSpec is the test framework that I've seen most often in different projects. It's harder to learn than others test frameworks. But since many companies and projects use it, learning it is good for you.
+
+        ul
+          li How RSpec files in the spec directory are organized.
+          li How an RSpec file is structured.
+          li Write your own RSpec.
+          li Setup TravisCI for your project.
+
+div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+  div class="modal-dialog"
+    div class="modal-content"
+      div class="modal-header"
+        button type="button" class="close" data-dismiss="modal" &times;
+        h4 class="modal-title" id="myModalLabel" Check in Lesson 2 - Basic Document
+      div class="modal-body"
+        form class="form-horizontal" role="form"
+          div class="form-group"
+            label for="inputEmail3" class="col-sm-4 control-label" Time Spent
+            div class="col-sm-8"
+              input type="text" class="form-control" placeholder="1.5"
+
+          div class="form-group"
+            label class="col-sm-4 control-label" Difficulty
+            div class="col-sm-8"
+              select class="form-control"
+                option 1 - Too Easy
+                option 2 - Simple
+                option 3 - OK
+                option 4 - Hard
+                option 5 - Very Hard
+
+          div class="form-group"
+            label class="col-sm-4 control-label" Thoughts
+            div class="col-sm-8"
+              textarea class="form-control" rows="5"
+              p class="help-block"
+                | Did you run into any problem? Any suggestion?
+
+              button type="submit" class="btn btn-primary" Check In

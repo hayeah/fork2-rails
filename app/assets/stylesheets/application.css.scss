@@ -1,0 +1,67 @@
+/*
+ *
+ */
+
+@import "bootstrap";
+
+.lesson-participants {
+  img {
+    margin-left: 5px;
+  }
+}
+
+.lesson-grid {
+  margin-bottom: 1em;
+
+  .lesson-grid-day {
+    display: inline-block;
+    width: percentage(1 / 8);
+    border: 1px solid #dddddd;
+
+    text-align: center;
+    &.done {
+      border-color: #4cae4c;
+    }
+    &.todo {
+      border-color: #d9534f;
+    }
+
+    a {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+
+  .lesson-grid-week {
+    display: inline-block;
+    width: percentage(1 / 8);
+    font-weight: bold;
+  }
+}
+
+.course-progress-sidebar {
+  .qr-code img {
+    width: 100%;
+  }
+}
+
+ul.course-progress-checkins {
+  padding-left: 0;
+  li {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dddddd;
+    list-style-type: none;
+
+    .body {
+      padding-left: 50px;
+    }
+    .mugshot {
+      float: left;
+    }
+  }
+}
+
+.lesson-today-flag {
+  color: #d9534f;
+}
