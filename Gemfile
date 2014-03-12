@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'slim', '~> 2.0.2'
 
 gem 'bootstrap-sass', '~> 3.1.0'
-gem "bootstrap_forms", "~> 4.0.1"
+gem "bootstrap_form", '~> 2.0.1'
 
 # See https://github.com/cstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

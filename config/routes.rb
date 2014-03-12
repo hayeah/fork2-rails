@@ -61,6 +61,8 @@ Fork::Application.routes.draw do
         post "batch_add"
       end
     end
+
+    resources :courses
   end
 
   root "main#landing"

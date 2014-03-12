@@ -29,7 +29,7 @@ GEM
     atomic (1.1.15)
     bootstrap-sass (3.1.0.1)
       sass (~> 3.2)
-    bootstrap_forms (4.0.1)
+    bootstrap_form (2.0.1)
     builder (3.1.4)
     celluloid (0.15.2)
       timers (~> 1.1.0)
@@ -132,7 +132,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.1.0)
-  bootstrap_forms (~> 4.0.1)
+  bootstrap_form (~> 2.0.1)
   celluloid (~> 0.15.2)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)

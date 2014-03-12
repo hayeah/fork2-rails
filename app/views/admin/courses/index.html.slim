@@ -1,0 +1,19 @@
+h3 Create Course
+
+= render "edit"
+
+h3 Courses
+
+table.table
+  thead: tr
+    th #
+    th id
+    th repo
+
+  tbody
+    - @courses.each do |course|
+      tr
+        td= course.id
+        td= course.short_id
+        td= course.git_url
+

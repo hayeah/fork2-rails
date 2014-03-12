@@ -37,7 +37,7 @@ CREATE TABLE courses (
     duration integer DEFAULT 7 NOT NULL,
     short_id character varying(255) NOT NULL,
     commit character varying(255),
-    repo character varying(255) NOT NULL,
+    git_url character varying(255) NOT NULL,
     schedule text[],
     created_at timestamp without time zone,
     updated_at timestamp without time zone
