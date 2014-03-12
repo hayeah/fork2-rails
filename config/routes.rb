@@ -54,5 +54,14 @@ Fork::Application.routes.draw do
   #     resources :products
   #   end
   resources :courses
+
+  namespace :admin do
+    resources :users do
+      collection do
+        post "batch_add"
+      end
+    end
+  end
+
   root "main#landing"
 end

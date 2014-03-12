@@ -1,0 +1,20 @@
+.row
+  .col-xs-12
+    h3 Batch Add Users
+
+    = form_tag({:action => "batch_add"}, :role => "form") do
+      .form-group
+        = label_tag "github_ids", "github ids"
+        = text_area_tag "github_ids", "foo", :class => "form-control", :rows => 5
+
+      .btn-group
+        input.btn.btn-primary type="submit" value="Add"
+        input.btn.btn-primary type="submit" value="Add Admin"
+
+    h3 Users
+    table.table.table-hover
+      thead: tr
+        th #
+        th github
+      tbody
+        = render @users
