@@ -1,0 +1,3 @@
+[submodule "spec/fixtures/example-course"]
+	path = spec/fixtures/example-course
+	url = git@github.com:hayeah/fork2-example-course.git
