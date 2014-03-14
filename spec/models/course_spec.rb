@@ -58,7 +58,8 @@ describe Course::Loader do
         :content => "content",
         :intro => "intro",
         :title => "title",
-        :commit => "commit"
+        :commit => "commit",
+        :position => 0
       })
     }
 
@@ -97,10 +98,9 @@ describe Course::Loader do
       end
 
       it "sets lesson attributes" do
-        expect(@lesson.content).to eq(repo_lesson.content)
-        expect(@lesson.intro).to eq(repo_lesson.intro)
-        expect(@lesson.title).to eq(repo_lesson.title)
-        expect(@lesson.commit).to eq(repo_lesson.commit)
+        %w(position content intro title commit).each do |property|
+          expect(@lesson.send(property)).to eq(repo_lesson.send(property))
+        end
       end
     end
   end

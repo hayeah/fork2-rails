@@ -77,6 +77,7 @@ class Course < ActiveRecord::Base
         db_lesson = db_lessons.find_or_initialize_by(:short_id => repo_lesson.short_id)
         db_lesson.deleted = false
         db_lesson.update_attributes \
+          :position => repo_lesson.position,
           :title => repo_lesson.title,
           :intro => repo_lesson.intro,
           :content => repo_lesson.content,

@@ -16,6 +16,7 @@ class CreateCourses < ActiveRecord::Migration
 
       t.string :commit, :limit => 40
 
+      t.integer :position
       t.string :title
       t.text :intro
       t.text :content

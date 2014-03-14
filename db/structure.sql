@@ -70,6 +70,7 @@ CREATE TABLE lessons (
     course_id integer NOT NULL,
     short_id character varying(255) NOT NULL,
     commit character varying(40),
+    "position" integer,
     title character varying(255),
     intro text,
     content text,
