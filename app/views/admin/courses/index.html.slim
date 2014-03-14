@@ -4,16 +4,28 @@ h3 Create Course
 
 h3 Courses
 
-table.table
-  thead: tr
-    th #
-    th id
-    th repo
+.admin-index
+- @courses.each do |course|
+  .admin-index-item
+    .row.grid
+      .col-md-1= course.id
+      .col-md-1= course.short_id
+      .col-md-1= link_to("git",course.git_url)
+    - course.lessons.each do |lesson|
+      .row
+        .col-md-2= lesson.short_id
 
-  tbody
-    - @courses.each do |course|
-      tr
-        td= course.id
-        td= course.short_id
-        td= course.git_url
+
+/ table.table
+/   thead: tr
+/     th #
+/     th id
+/     th repo
+
+/   tbody
+/     - @courses.each do |course|
+/       tr
+/         td= course.id
+/         td= course.short_id
+/         td= course.git_url
 
