@@ -34,11 +34,9 @@ SET default_with_oids = false;
 
 CREATE TABLE courses (
     id integer NOT NULL,
-    duration integer DEFAULT 7 NOT NULL,
     short_id character varying(255) NOT NULL,
     commit character varying(255),
     git_url character varying(255) NOT NULL,
-    schedule text[],
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -61,6 +59,43 @@ CREATE SEQUENCE courses_id_seq
 --
 
 ALTER SEQUENCE courses_id_seq OWNED BY courses.id;
+
+
+--
+-- Name: lessons; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE lessons (
+    id integer NOT NULL,
+    course_id integer NOT NULL,
+    short_id character varying(255) NOT NULL,
+    commit character varying(40),
+    title character varying(255),
+    intro text,
+    content text,
+    deleted boolean DEFAULT false,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: lessons_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE lessons_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: lessons_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE lessons_id_seq OWNED BY lessons.id;
 
 
 --
@@ -117,6 +152,13 @@ ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY lessons ALTER COLUMN id SET DEFAULT nextval('lessons_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -126,6 +168,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 ALTER TABLE ONLY courses
     ADD CONSTRAINT courses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: lessons_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY lessons
+    ADD CONSTRAINT lessons_pkey PRIMARY KEY (id);
 
 
 --
@@ -141,6 +191,20 @@ ALTER TABLE ONLY users
 --
 
 CREATE UNIQUE INDEX index_courses_on_short_id ON courses USING btree (short_id);
+
+
+--
+-- Name: index_lessons_on_course_id_and_short_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_lessons_on_course_id_and_short_id ON lessons USING btree (course_id, short_id);
+
+
+--
+-- Name: index_lessons_on_short_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_lessons_on_short_id ON lessons USING btree (short_id);
 
 
 --

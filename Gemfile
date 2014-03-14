@@ -38,14 +38,23 @@ gem "rest-client", '~> 1.6.7'
 # Concurrent Programming
 gem "celluloid", "~> 0.15.2"
 
+gem "course_builder", :path => "course_builder"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
 group :development do
+  # gem "spring"
+  # gem "spring-commands-rspec"
+  gem "pry"
   gem 'pry-rails'
   gem 'quiet_assets'
+end
+
+group :test do
+  gem 'rspec-rails', '~> 3.0.0.beta'
 end
 
 # Use ActiveModel has_secure_password

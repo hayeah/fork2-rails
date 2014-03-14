@@ -10,6 +10,6 @@ class Admin::CoursesController < AdminController
 
   private
   def course_params
-    params.require(:course).permit(:short_id,:git_url,:duration)
+    params.require(:course).permit(:short_id,:git_url)
   end
 end

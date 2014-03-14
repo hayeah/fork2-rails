@@ -1,0 +1,1 @@
+EXAMPLE_COURSE_PATH = Pathname.new(__dir__).join("fixtures/example-course")
