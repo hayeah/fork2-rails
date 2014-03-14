@@ -2,10 +2,6 @@
   .col-md-12
     h1= @course.short_id.titleize
 
-    div class="alert alert-success"
-      b Announcement:
-      |  On Saturday 9:00pm, we'll have live-coding session with Terry Tai
-
   .course-progress-sidebar.col-md-4.pull-right
     = render "checkin"
 
@@ -16,6 +12,6 @@
 
   .col-md-8
     = render "progress_grid"
-    = render "lessons"
+    = render "lessons", :lessons => @course.lessons
 
 = render "checkin_modal_form"

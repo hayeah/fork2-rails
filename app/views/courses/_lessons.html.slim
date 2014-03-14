@@ -1,53 +1,19 @@
-.panel.panel-default.lesson#lesson-1-explore-mongoid
-  .panel-heading
-    .span class="glyphicon glyphicon-ok"
-    a href="https://github.com/hayeah/ruby-bootcamp-mongoid/blob/master/01-explore-mongoid.md"
-      |  Lesson 1 - Explore Mongoid
-    .clearfix
-  .panel-body
-    div
-      | Mongoid is a mature project, with 289 contributors. Today we'll look at some of the tools that the project uses, as well as read some of the code to see how a large & complicated project is structured.
+// @param [[Lesson]] lessons
 
-    span.lesson-participants.pull-right
-      = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
-      = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
-      = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+- lessons.each do |lesson|
+  .panel.panel-default.lesson#lesson-1-explore-mongoid
+    .panel-heading
+      .span class="glyphicon glyphicon-ok"
+      a href="https://github.com/hayeah/ruby-bootcamp-mongoid/blob/master/01-explore-mongoid.md"
+        |  Lesson 1 - #{lesson.title}
+      .clearfix
+    .panel-body
+      div=  raw lesson.intro
 
-.panel.panel-default#lesson-2-basic-document
-  .panel-heading
-    .lesson-today-flag.span class="glyphicon glyphicon-flag"
-    a href="https://github.com/hayeah/ruby-bootcamp-mongoid/blob/master/02-basic-document.md"
-      |  Lesson 2 - Basic Document
-  .panel-body
-    div class="alert alert-success"
-      b Announcement:
-      |  You now have two days to work on lesson 2
-    div class="alert alert-info"
-      b Info:
-      |  RSpecs are at
-      a href="https://github.com/hayeah/my_mongoid_spec" &nbsp; https://github.com/hayeah/my_mongoid_spec
-    div
-      ul
-        li Use Mongoid to model Github Event.
-        li Read Mongoid code.
-        li Implement a simple Document model for MyMongoid.
+      a class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+        | Check In
 
-    a class="btn btn-primary" data-toggle="modal" data-target="#myModal"
-      | Check In
-
-    span.lesson-participants.pull-right
-      = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
-      = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
-
-.panel.panel-default#lesson-3-writing-rspec
-  .panel-heading
-    a href="https://github.com/hayeah/ruby-bootcamp-mongoid/blob/master/03-rspec-and-ci.md"
-      | Lesson 3 - Writing RSpec
-  .panel-body
-    | RSpec is the test framework that I've seen most often in different projects. It's harder to learn than others test frameworks. But since many companies and projects use it, learning it is good for you.
-
-    ul
-      li How RSpec files in the spec directory are organized.
-      li How an RSpec file is structured.
-      li Write your own RSpec.
-      li Setup TravisCI for your project.
+      span.lesson-participants.pull-right
+        = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+        = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
+        = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")
