@@ -10,6 +10,10 @@ class Course < ActiveRecord::Base
     LOCAL_ROOT + self.short_id
   end
 
+  def to_param
+    short_id
+  end
+
   class Repo < Struct.new(:course)
     def exists?
       File.exists?(course.path)
