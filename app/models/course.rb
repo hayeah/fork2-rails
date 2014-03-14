@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  include ShortLink
+
   validates :short_id, :presence => true
   validates :git_url, :presence => true
 
@@ -8,10 +10,6 @@ class Course < ActiveRecord::Base
 
   def path
     LOCAL_ROOT + self.short_id
-  end
-
-  def to_param
-    short_id
   end
 
   class Repo < Struct.new(:course)
