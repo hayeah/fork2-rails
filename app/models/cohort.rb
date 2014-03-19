@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: cohorts
+#
+#  id          :integer          not null, primary key
+#  course_id   :integer          not null
+#  short_id    :string(255)      not null
+#  total_days  :integer          not null
+#  current_day :integer          default(0)
+#  schedule    :json
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class Cohort < ActiveRecord::Base
   include ShortLink
 

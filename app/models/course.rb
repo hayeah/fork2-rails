@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  id         :integer          not null, primary key
+#  short_id   :string(255)      not null
+#  commit     :string(255)
+#  git_url    :string(255)      not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Course < ActiveRecord::Base
   include ShortLink
 
