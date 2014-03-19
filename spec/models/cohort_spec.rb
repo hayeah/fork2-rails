@@ -114,4 +114,23 @@ describe Cohort do
       # end
     end
   end
+
+  describe "#scheduled_lessons" do
+    let(:course) {
+      create(:course_with_lessons)
+    }
+
+    let(:lessons) {
+      course.lessons
+    }
+
+    let(:cohort) {
+      create(:cohort,:course => course, :schedule => {"2" => lessons[1].short_id, "1" => lessons[0].short_id})
+    }
+
+    it "sorts the keys in the same order as scheduled_days" do
+      expect(cohort.scheduled_days).to eq(%w(1 2))
+      expect(cohort.scheduled_lessons.keys).to eq(cohort.scheduled_days)
+    end
+  end
 end

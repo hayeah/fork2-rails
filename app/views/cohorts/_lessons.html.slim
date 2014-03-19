@@ -1,18 +1,21 @@
 // @param [[Cohort]] cohort
 // @param [[Lesson]] lesson
+// @param [[CohortUser]] cohort_user
 
 - lessons.each do |lesson|
   .panel.panel-default.lesson
     .panel-heading
-      .span class="glyphicon glyphicon-ok"
+      - if cohort_user.finished?(lesson)
+        .span class="glyphicon glyphicon-ok"
       = link_to([lesson.course,lesson]) do
         |  Lesson #{lesson.position + 1} - #{lesson.title}
       .clearfix
     .panel-body
       div=  raw lesson.intro
 
-      a href=checkin_cohort_path(cohort,lesson) class="btn btn-primary"
-        | Check In
+      - if cohort_user.next_unfinished_lesson == lesson
+        a href=checkin_cohort_path(cohort,lesson) class="btn btn-primary"
+          | Check In
 
       / span.lesson-participants.pull-right
       /   = image_tag("http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40")

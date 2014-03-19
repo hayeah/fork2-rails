@@ -19,4 +19,22 @@ class CohortUser < ActiveRecord::Base
   def checkin(lesson,attrs={})
     self.checkins.create(attrs.merge(lesson: lesson))
   end
+
+  def finished?(lesson)
+    checkins.find { |checkin| checkin.lesson_id == lesson.id }
+  end
+
+  # The next available lesson that's not yet checked in
+  # @return [Lesson?] nil if there's no unfinished lessons
+  def next_unfinished_lesson
+    # checkins
+    unfinished_lessons[unfinished_lessons.keys.first]
+  end
+
+  # @return [[Lesson]]
+  def unfinished_lessons
+    @unfinished_lessons ||= cohort.scheduled_lessons.reject { |day,lesson|
+      finished?(lesson)
+    }
+  end
 end

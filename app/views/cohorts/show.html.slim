@@ -1,4 +1,5 @@
 // @var [Course] @cohort
+// @var [CohortUser] @cohort_user
 
 - course = @cohort.course
 .row.course-progress
@@ -17,6 +18,6 @@
 
   .col-md-8
     / = render "progress_grid"
-    = render "cohorts/lessons", :lessons => course.lessons, :cohort => @cohort
+    = render "cohorts/lessons", :lessons => course.lessons, :cohort => @cohort, :cohort_user => @cohort_user
 
 / = render "checkin_modal_form"

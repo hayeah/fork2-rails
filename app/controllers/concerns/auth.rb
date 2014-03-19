@@ -21,7 +21,7 @@ module Auth
   end
 
   def admin?
-    # me && me.admin?
+    me && me.is_admin?
   end
 
   def verify_admin!

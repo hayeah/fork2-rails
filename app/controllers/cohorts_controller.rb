@@ -2,7 +2,7 @@ class CohortsController < ApplicationController
   before_action :verify_user!
 
   def show
-    cohort
+    cohort; cohort_user
   end
 
   def checkin
@@ -32,6 +32,6 @@ class CohortsController < ApplicationController
   end
 
   def cohort_user
-    cohort.cohort_users.find_by(:user => me)
+    @cohort_user ||= cohort.cohort_users.find_by(:user => me)
   end
 end

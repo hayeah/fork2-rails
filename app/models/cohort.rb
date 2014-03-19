@@ -36,4 +36,32 @@ class Cohort < ActiveRecord::Base
     user = User.find_by!(:github_id => github_id)
     cu = self.cohort_users.find_or_create_by(:user => user)
   end
+
+  # @return [[String]] days as string sorted numerically
+  def scheduled_days
+    schedule.keys.sort_by(&:to_i)
+  end
+
+  # @return [{String => Lesson}] scheduled lessons (insertion order is #scheduled_days)
+  def scheduled_lessons
+    return @scheduled_lessons if defined?(@scheduled_lessons)
+    result = {}
+    days = scheduled_days
+    days.each do |day|
+      lesson_id = schedule[day]
+      lesson = self.lessons.find { |lesson| lesson.short_id == lesson_id }
+      result[day] = lesson
+    end
+    @scheduled_lessons = result
+  end
+
+  # @return [{Integer => Lesson}] map of user id to next next unfinished lesson
+  def progress
+    return @progress if defined?(@progress)
+    result = {}
+    cohort_users.map {|cohort_user|
+      result[cohort_user.user_id] = cohort_user.next_unfinished_lesson
+    }
+    @progress = result
+  end
 end
