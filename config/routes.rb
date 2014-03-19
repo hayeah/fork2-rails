@@ -65,6 +65,11 @@ Fork::Application.routes.draw do
     end
 
     resources :courses
+    resources :cohorts do
+      member do
+        patch "add_users"
+      end
+    end
   end
 
   root "main#landing"

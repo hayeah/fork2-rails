@@ -1,0 +1,27 @@
+// @param [Cohort] cohort
+// = bootstrap_form_for(:cohort) do |f|
+
+- if !cohort.errors.empty?
+  - cohort.errors.full_messages.each do |msg|
+    p= msg
+
+= bootstrap_form_for(cohort, :url => url_for([:admin,cohort])) do |f|
+  - if cohort.new_record?
+    .form-group
+      label Course Short ID
+      input.form-control type="text" name="course_id" value="#{params[:course_id]}"
+  = f.text_field :short_id, :label => "Cohort Short ID"
+  = f.text_field :total_days
+
+  - if cohort.persisted?
+    = f.text_area :schedule, :rows => 5
+
+- if cohort.persisted?
+  h3 Add Cohort Users
+  = bootstrap_form_for(cohort, :url => add_users_admin_cohort_path(cohort)) do |f|
+    .form-group
+      label Users (Github IDs, one on each line)
+      textarea.form-control type="text" name="github_ids" rows="5"
+        = form_github_ids(cohort.users.map(&:github_id).sort)
+
+    = f.submit "Add All"

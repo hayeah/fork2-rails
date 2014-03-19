@@ -6,7 +6,7 @@ module ShortLink
       if String === id
         self.find_by!(:short_id => id)
       else
-        super
+        self.find(id)
       end
     end
   end

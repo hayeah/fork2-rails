@@ -29,6 +29,71 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: cohort_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE cohort_users (
+    id integer NOT NULL,
+    cohort_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+--
+-- Name: cohort_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE cohort_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cohort_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE cohort_users_id_seq OWNED BY cohort_users.id;
+
+
+--
+-- Name: cohorts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE cohorts (
+    id integer NOT NULL,
+    course_id integer NOT NULL,
+    short_id character varying(255) NOT NULL,
+    total_days integer NOT NULL,
+    current_day integer DEFAULT 0,
+    schedule json,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: cohorts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE cohorts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cohorts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE cohorts_id_seq OWNED BY cohorts.id;
+
+
+--
 -- Name: courses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -146,6 +211,20 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY cohort_users ALTER COLUMN id SET DEFAULT nextval('cohort_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY cohorts ALTER COLUMN id SET DEFAULT nextval('cohorts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
 
 
@@ -161,6 +240,22 @@ ALTER TABLE ONLY lessons ALTER COLUMN id SET DEFAULT nextval('lessons_id_seq'::r
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: cohort_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY cohort_users
+    ADD CONSTRAINT cohort_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cohorts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY cohorts
+    ADD CONSTRAINT cohorts_pkey PRIMARY KEY (id);
 
 
 --
@@ -185,6 +280,13 @@ ALTER TABLE ONLY lessons
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_cohorts_on_short_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_cohorts_on_short_id ON cohorts USING btree (short_id);
 
 
 --
@@ -231,3 +333,5 @@ SET search_path TO "$user",public;
 INSERT INTO schema_migrations (version) VALUES ('20140312081334');
 
 INSERT INTO schema_migrations (version) VALUES ('20140312142529');
+
+INSERT INTO schema_migrations (version) VALUES ('20140314081239');
