@@ -10,11 +10,18 @@
     .form-group
       label Course Short ID
       input.form-control type="text" name="course_id" value="#{params[:course_id]}"
+  - else
+    .form-group
+      label Course Short ID
+      p= link_to(cohort.course.short_id,[:admin,cohort.course])
   = f.text_field :short_id, :label => "Cohort Short ID"
   = f.text_field :total_days
 
   - if cohort.persisted?
-    = f.text_area :schedule, :rows => 5
+    = f.text_area :schedule, :value => to_form_schedule(cohort.schedule), :rows => 5
+
+
+  = f.submit "Submit"
 
 - if cohort.persisted?
   h3 Add Cohort Users

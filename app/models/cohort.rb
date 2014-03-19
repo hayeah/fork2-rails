@@ -27,6 +27,8 @@ class Cohort < ActiveRecord::Base
 
   validates :total_days, :numericality => true, :presence => true
 
+  validates_with ScheduleValidator
+
   # @param [String] github_id Cohort user Github ID
   # @return [CohortUser]
   # @raise [ActiveRecord::RecordNotFound] if no user exists for a github_id

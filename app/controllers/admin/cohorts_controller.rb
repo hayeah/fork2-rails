@@ -13,6 +13,15 @@ class Admin::CohortsController < AdminController
     end
   end
 
+  def update
+    cohort.update(update_params)
+    if cohort.valid?
+      redirect_to :action => :edit
+    else
+      render "edit"
+    end
+  end
+
   def edit
     cohort
   end
@@ -48,7 +57,11 @@ class Admin::CohortsController < AdminController
   end
 
   def create_params
-    params.require(:cohort).permit(:total_days,:short_id)
+    params.require(:cohort).permit(:total_days,:short_id,:schedule)
+  end
+
+  def update_params
+    create_params.merge(:schedule => from_form_schedule)
   end
 
   module FormHelper
@@ -62,6 +75,23 @@ class Admin::CohortsController < AdminController
     # @param [[String]] ids Cohort users' Github IDs
     def form_github_ids(ids)
       ids.join("\n")
+    end
+
+    # @return [Hash]
+    def from_form_schedule
+      schedule = {}
+      params[:cohort][:schedule].split("\r\n").each { |line|
+        day, lesson = line.split
+        schedule[day] = lesson
+      }
+      schedule
+    end
+
+    # @return [String]
+    def to_form_schedule(schedule)
+      schedule.map { |k,v|
+        "#{k} #{v}"
+      }.join "\n"
     end
   end
   helper FormHelper
