@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   include Future
   include User::Github
 
+  has_many :cohorts, :through => :cohort_users
+  has_many :cohort_users
+
   def github_data=(data)
     self["github_data"] = data
     self.email ||= data["email"]

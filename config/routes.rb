@@ -57,6 +57,8 @@ Fork::Application.routes.draw do
   get '/auth/:provider', to: "sessions#new", as: "auth"
   get '/auth/:provider/callback', to: 'sessions#create'
 
+  resources :cohorts
+
   resources :courses do
     resources :lessons
   end
@@ -76,5 +78,5 @@ Fork::Application.routes.draw do
     end
   end
 
-  root "main#landing"
+  root "main#root"
 end

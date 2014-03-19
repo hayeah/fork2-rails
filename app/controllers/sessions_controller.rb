@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       user.github_data = github_user
     end
     auth_user(user)
-    redirect_to root_path
+    redirect_after_auth
   end
 
   private

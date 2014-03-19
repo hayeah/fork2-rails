@@ -1,0 +1,19 @@
+.row.course-progress
+  .col-md-12
+    h1= @course.short_id.titleize
+
+  .course-progress-sidebar.col-md-4.pull-right
+    / = render "checkin"
+
+    h5 Group WeChat
+    .row.wechat-group
+      .col-md-8
+        .qr-code= image_tag("/qr.jpg")
+
+    h5 Participants
+
+  .col-md-8
+    / = render "progress_grid"
+    = render "courses/lessons", :lessons => @course.lessons
+
+/ = render "checkin_modal_form"
