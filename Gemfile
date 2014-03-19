@@ -54,6 +54,7 @@ group :development do
   gem "pry"
   gem 'pry-rails'
   gem 'quiet_assets'
+  gem "annotate", "~> 2.6.2"
 end
 
 group :test do
