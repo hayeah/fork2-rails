@@ -20,11 +20,11 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'slim', '~> 2.0.2'
 
-gem 'bootstrap-sass', '~> 3.1.0'
 gem "bootstrap_form", '~> 2.0.1'
 
 
 gem 'omniauth', '~> 1.2.1'
+gem 'omniauth-github'
 
 # See https://github.com/cstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

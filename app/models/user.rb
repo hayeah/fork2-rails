@@ -14,4 +14,11 @@
 class User < ActiveRecord::Base
   include Future
   include User::Github
+
+  def github_data=(data)
+    self["github_data"] = data
+    self.email ||= data["email"]
+    self.name ||= data["name"]
+    data
+  end
 end

@@ -6,10 +6,23 @@ html
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
 body
-  nav class="navbar navbar-default" role="navigation"
-    div class="navbar-header"
-      a class="navbar-brand" href="/"
-        | Fork2
-      button.navbar-btn.btn.btn-primary.navbar-right Sign in
+  nav.navbar.navbar-default
+    .container-fluid
+      div class="navbar-header"
+        button.navbar-toggle type="button" data-toggle="collapse" data-target="#navbar"
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a class="navbar-brand" href="/"
+          | Fork2
+      .navbar-collapse
+        ul.nav.navbar-nav.navbar-right
+          li
+            - if me
+              .navbar-text
+                | Hello @#{me.github_id}
+            - else
+              a href=auth_path(:provider => :github)
+                | Sign in with Github
   .container
     = yield

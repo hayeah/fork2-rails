@@ -53,6 +53,10 @@ Fork::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get '/auth/:provider', to: "sessions#new", as: "auth"
+  get '/auth/:provider/callback', to: 'sessions#create'
+
   resources :courses do
     resources :lessons
   end

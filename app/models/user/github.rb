@@ -7,17 +7,10 @@ module User::Github
   def update_github_data
     data = github.public_info
     self.github_data = data
-    self.email ||= data["email"]
-    self.name ||= data["name"]
-    data
   end
 
-  class API
+  class API < Struct.new(:user)
     ROOT = URI("https://api.github.com")
-
-    def initialize(user)
-      @user = user
-    end
 
     def public_info
       get("/users/#{@user.github_id}")
