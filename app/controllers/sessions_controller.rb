@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include Auth::Grant
   def create
     # http://developer.github.com/v3/users/#response
     github_id = github_user["login"]

@@ -25,6 +25,7 @@ class MainController < ApplicationController
 
 
   def landing_page
+    render "landing"
   end
 
   private
