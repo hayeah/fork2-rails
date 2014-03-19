@@ -13,16 +13,9 @@ class MainController < ApplicationController
     if current_cohort.nil?
       render "cohorts/none"
     else
-      current_cohort
-      course
-      render "cohorts/index"
+      redirect_to current_cohort
     end
-    # @participant
-    # @coach
-
   end
-
-
 
   def landing_page
     render "landing"

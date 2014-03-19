@@ -1,6 +1,9 @@
+// @var [Course] @cohort
+
+- course = @cohort.course
 .row.course-progress
   .col-md-12
-    h1= @course.short_id.titleize
+    h1= course.short_id.titleize
 
   .course-progress-sidebar.col-md-4.pull-right
     / = render "checkin"
@@ -14,6 +17,6 @@
 
   .col-md-8
     / = render "progress_grid"
-    = render "courses/lessons", :lessons => @course.lessons
+    = render "cohorts/lessons", :lessons => course.lessons, :cohort => @cohort
 
 / = render "checkin_modal_form"

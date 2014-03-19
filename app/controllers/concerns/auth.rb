@@ -28,5 +28,9 @@ module Auth
     admin? || raise("not admin, yo")
   end
 
+  def verify_user!
+    signed_in?
+  end
+
   alias_method :me, :current_user
 end

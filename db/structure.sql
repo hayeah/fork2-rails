@@ -29,6 +29,41 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: checkins; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE checkins (
+    id integer NOT NULL,
+    cohort_user_id integer NOT NULL,
+    lesson_id integer NOT NULL,
+    time_spent double precision,
+    difficulty integer,
+    feedback text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: checkins_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE checkins_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: checkins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE checkins_id_seq OWNED BY checkins.id;
+
+
+--
 -- Name: cohort_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -212,6 +247,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY checkins ALTER COLUMN id SET DEFAULT nextval('checkins_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY cohort_users ALTER COLUMN id SET DEFAULT nextval('cohort_users_id_seq'::regclass);
 
 
@@ -241,6 +283,14 @@ ALTER TABLE ONLY lessons ALTER COLUMN id SET DEFAULT nextval('lessons_id_seq'::r
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: checkins_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY checkins
+    ADD CONSTRAINT checkins_pkey PRIMARY KEY (id);
 
 
 --
@@ -281,6 +331,13 @@ ALTER TABLE ONLY lessons
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_checkins_on_cohort_user_id_and_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_checkins_on_cohort_user_id_and_lesson_id ON checkins USING btree (cohort_user_id, lesson_id);
 
 
 --
@@ -338,3 +395,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140312142529');
 INSERT INTO schema_migrations (version) VALUES ('20140314081239');
 
 INSERT INTO schema_migrations (version) VALUES ('20140319084712');
+
+INSERT INTO schema_migrations (version) VALUES ('20140319090709');

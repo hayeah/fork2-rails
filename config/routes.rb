@@ -57,7 +57,11 @@ Fork::Application.routes.draw do
   get '/auth/:provider', to: "sessions#new", as: "auth"
   get '/auth/:provider/callback', to: 'sessions#create'
 
-  resources :cohorts
+  resources :cohorts do
+    member do
+      match "checkin/:lesson_id", :action => "checkin", :as => "checkin", :via => [:get,:post]
+    end
+  end
 
   resources :courses do
     resources :lessons

@@ -1,8 +1,8 @@
 // @param [[Cohort]] cohort
-// @param [[Lesson]] lessons
+// @param [[Lesson]] lesson
 
 - lessons.each do |lesson|
-  .panel.panel-default.lesson#lesson-1-explore-mongoid
+  .panel.panel-default.lesson
     .panel-heading
       .span class="glyphicon glyphicon-ok"
       = link_to([lesson.course,lesson]) do
@@ -11,7 +11,7 @@
     .panel-body
       div=  raw lesson.intro
 
-      a href=checkin_cohort_path(cohort,:lesson_id => lesson.id) class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+      a href=checkin_cohort_path(cohort,lesson) class="btn btn-primary"
         | Check In
 
       / span.lesson-participants.pull-right

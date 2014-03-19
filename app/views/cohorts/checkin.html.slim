@@ -1,0 +1,11 @@
+// @var [Cohort] cohort Current cohort of the user
+// @var [Lesson] lesson Lesson to checkin
+// @var [Lesson] checkin Checkin object for form
+.row: .col-md-12
+  h3 #{@lesson.title} - Checkin
+
+  = bootstrap_form_for(@checkin,:url => checkin_cohort_path(@cohort,@lesson)) do |f|
+    = f.text_field :time_spent, :placeholder => 1.5
+    = f.select :difficulty, [["1 - Too Easy", 1],["2 - Simple", 2],["3 - OK", 3],["4 - Hard", 4],["5 - Too Hard", 5]], :selected => 3
+    = f.text_area :feedback, :rows => 5
+    = f.submit "Checkin"
