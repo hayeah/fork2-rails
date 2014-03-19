@@ -184,7 +184,8 @@ CREATE TABLE users (
     name character varying(255),
     email character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    is_admin boolean
 );
 
 
@@ -335,3 +336,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140312081334');
 INSERT INTO schema_migrations (version) VALUES ('20140312142529');
 
 INSERT INTO schema_migrations (version) VALUES ('20140314081239');
+
+INSERT INTO schema_migrations (version) VALUES ('20140319084712');
