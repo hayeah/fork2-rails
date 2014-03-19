@@ -23,6 +23,9 @@ gem 'slim', '~> 2.0.2'
 gem 'bootstrap-sass', '~> 3.1.0'
 gem "bootstrap_form", '~> 2.0.1'
 
+
+gem 'omniauth', '~> 1.2.1'
+
 # See https://github.com/cstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -42,6 +45,7 @@ gem "rest-client", '~> 1.6.7'
 gem "celluloid", "~> 0.15.2"
 
 gem "course_builder", :path => "course_builder"
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
