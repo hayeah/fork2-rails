@@ -7,10 +7,3 @@
   .col-md-2= cohort.short_id
   .col-md-1= cohort.total_days
   .col-md-1= link_to("edit",edit_admin_cohort_path(cohort))
-.row
-  .col-md-6
-    b Cohort Users (Github IDs)
-    = bootstrap_form_for(cohort,:url => edit_admin_cohort_path(cohort)) do |f|
-      .form-group
-        textarea.form-control name="cohort_user_ids" rows="5"
-      = f.submit "Update"
