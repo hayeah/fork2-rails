@@ -27,5 +27,5 @@ class Checkin < ActiveRecord::Base
     :less_than => 6
   }
 
-  validates_uniqueness_of :lesson_id, :scope => :cohort_user_id
+  validates_uniqueness_of :lesson_id, :scope => :cohort_user_id, :message => "already checked in"
 end

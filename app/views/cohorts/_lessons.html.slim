@@ -13,8 +13,11 @@
     .panel-body
       div=  raw lesson.intro
 
-      - if cohort_user.next_unfinished_lesson == lesson
-        a href=checkin_cohort_path(cohort,lesson) class="btn btn-primary"
+      - if checkin = cohort_user.find_checkin_by_lesson(lesson)
+        a href=edit_cohort_lesson_checkin_path(cohort,lesson)
+          | edit checkin
+      - else
+        a href=new_cohort_lesson_checkin_path(cohort,lesson) class="btn btn-primary"
           | Check In
 
       / span.lesson-participants.pull-right

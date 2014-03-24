@@ -16,12 +16,16 @@ class CohortUser < ActiveRecord::Base
     :scope => :cohort
   }
 
+  def find_checkin_by_lesson(lesson)
+    checkins.find { |checkin| checkin.lesson_id == lesson.id }
+  end
+
   def checkin(lesson,attrs={})
     self.checkins.create(attrs.merge(lesson: lesson))
   end
 
   def finished?(lesson)
-    checkins.find { |checkin| checkin.lesson_id == lesson.id }
+    !find_checkin_by_lesson(lesson).nil?
   end
 
   # The next available lesson that's not yet checked in
