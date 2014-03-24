@@ -25,5 +25,12 @@ Fork::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  if ENV["USE_ASSETS"]
+    config.assets.debug = false
+    config.serve_static_assets = true
+    config.assets.compile = false
+    config.assets.digest = true
+  else
+    config.assets.debug = true
+  end
 end
