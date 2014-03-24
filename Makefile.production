@@ -1,0 +1,8 @@
+prepare:
+	bundle install --without=development,test
+	RAILS_ENV=production rake db:migrate
+
+server:
+	RAILS_ENV=production rails s
+
+.PHONY: prepare server
