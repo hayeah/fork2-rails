@@ -15,9 +15,21 @@ module Auth
   alias_method :me, :current_user
 
   def api_user
-    token = request.headers["X-FORK2-TOKEN"] || params[:auth_token]
-    if token
-      User.find_by(auth_token: token)
+    return @api_user if defined?(@api_user)
+    @api_user = if api_token
+      User.find_by(auth_token: api_token)
+    end
+  end
+
+  def api_token
+    request.headers["API-Token"]
+  end
+
+  def verify_api_user!
+    if api_token.nil?
+      render text: "No API token", status: 403
+    elsif api_user.nil?
+      render text: "Invalid API token", status: 403
     end
   end
 
