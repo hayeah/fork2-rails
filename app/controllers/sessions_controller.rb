@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+  # show login page
+  def login
+  end
+
   include Auth::Grant
   def create
     # http://developer.github.com/v3/users/#response

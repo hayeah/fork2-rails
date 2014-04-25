@@ -25,4 +25,13 @@ class User < ActiveRecord::Base
     self.name ||= data["name"]
     data
   end
+
+  def generate_auth_token
+    self.auth_token = SecureRandom.hex
+  end
+
+  def reset_auth_token!
+    self.generate_auth_token
+    self.save!
+  end
 end
