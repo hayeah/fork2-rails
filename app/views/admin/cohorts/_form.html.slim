@@ -6,29 +6,11 @@
     p= msg
 
 = bootstrap_form_for(cohort, :url => url_for([:admin,cohort])) do |f|
-  - if cohort.new_record?
-    .form-group
-      label Course Short ID
-      input.form-control type="text" name="course_id" value="#{params[:course_id]}"
-  - else
-    .form-group
-      label Course Short ID
-      p= link_to(cohort.course.short_id,[:admin,cohort.course])
-  = f.text_field :short_id, :label => "Cohort Short ID"
-  = f.text_field :total_days
-
-  - if cohort.persisted?
-    = f.text_area :schedule, :value => to_form_schedule(cohort.schedule), :rows => 5
-
-
+  = f.text_field :permalink, :label => "Cohort Permalink"
   = f.submit "Submit"
 
 - if cohort.persisted?
-  h3 Add Cohort Users
-  = bootstrap_form_for(cohort, :url => add_users_admin_cohort_path(cohort)) do |f|
-    .form-group
-      label Users (Github IDs, one on each line)
-      textarea.form-control type="text" name="github_ids" rows="5"
-        = form_github_ids(cohort.users.map(&:github_id).sort)
-
-    = f.submit "Add All"
+  h3 Cohort Users
+  = bootstrap_form_for(cohort, :url => update_users_admin_cohort_path(cohort)) do |f|
+    = f.text_area :cohort_users_csv
+    = f.submit "Update"

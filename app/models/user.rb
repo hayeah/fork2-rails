@@ -10,6 +10,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  is_admin    :boolean
+#  auth_token  :string(255)      default(""), not null
 #
 
 class User < ActiveRecord::Base
@@ -18,6 +19,13 @@ class User < ActiveRecord::Base
 
   has_many :cohorts, :through => :cohort_users
   has_many :cohort_users
+
+  has_many :test_reports
+
+  before_save do |me|
+    self.email = self.email.downcase
+    self.github_id = self.github_id.downcase
+  end
 
   def github_data=(data)
     self["github_data"] = data

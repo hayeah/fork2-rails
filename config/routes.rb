@@ -28,7 +28,7 @@ Fork::Application.routes.draw do
     resources :courses
     resources :cohorts do
       member do
-        patch "add_users"
+        patch "update_users"
       end
     end
   end

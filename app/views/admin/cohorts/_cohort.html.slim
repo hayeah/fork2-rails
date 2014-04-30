@@ -1,9 +1,6 @@
 .row
-  .col-md-2 Course ID
-  .col-md-2 Cohort ID
-  .col-md-1 Days
+  .col-md-2 ID
+  .col-md-1
 .row
-  .col-md-2= cohort.course.short_id
-  .col-md-2= cohort.short_id
-  .col-md-1= cohort.total_days
+  .col-md-2= cohort.permalink
   .col-md-1= link_to("edit",edit_admin_cohort_path(cohort))
