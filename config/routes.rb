@@ -6,6 +6,7 @@ Fork::Application.routes.draw do
   controller :api, :path => "api" do
     get :auth
     post :auth
+    post :report_test
   end
 
   resources :cohorts do
@@ -19,16 +20,18 @@ Fork::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :users do
-      collection do
-        post "batch_add"
-      end
-    end
+    # resources :users do
+    #   collection do
+    #     post "batch_add"
+    #   end
+    # end
 
-    resources :courses
+    # resources :courses
+
     resources :cohorts do
       member do
         patch "update_users"
+        patch "link_discourse_users"
       end
     end
   end

@@ -12,6 +12,9 @@ class Cohort < ActiveRecord::Base
   def cohort_users_csv
   end
 
+  def discourse_users_json
+  end
+
   has_many :users, :through => :cohort_users
   has_many :cohort_users
 end

@@ -14,3 +14,9 @@
   = bootstrap_form_for(cohort, :url => update_users_admin_cohort_path(cohort)) do |f|
     = f.text_area :cohort_users_csv
     = f.submit "Update"
+
+- if cohort.persisted?
+  h3 Associate Discourse Users
+  = bootstrap_form_for(cohort, :url => link_discourse_users_admin_cohort_path(cohort)) do |f|
+    = f.text_area :discourse_users_json
+    = f.submit "Update"

@@ -56,6 +56,22 @@ class Admin::CohortsController < AdminController
     end
   end
 
+  def link_discourse_users
+    records = JSON.parse(params[:cohort][:discourse_users_json])
+    # email, github_id, discourse_username
+    errors = []
+    records.each do |record|
+      user = User.find_by(email: record["email"].downcase) || User.find_by(github_id: record["github_id"].downcase)
+      if user.nil?
+        errors.push({error: "cannot associate discourse user",email: record["email"]})
+        next
+      end
+      user.discourse_username = record["discourse_username"]
+      user.save
+    end
+    render json: errors
+  end
+
   private
 
   def cohort
