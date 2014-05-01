@@ -250,7 +250,8 @@ CREATE TABLE users (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     is_admin boolean,
-    auth_token character varying(255) DEFAULT ''::character varying NOT NULL
+    auth_token character varying(255) DEFAULT ''::character varying NOT NULL,
+    discourse_username character varying(255)
 );
 
 
@@ -457,3 +458,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140425142832');
 INSERT INTO schema_migrations (version) VALUES ('20140430014620');
 
 INSERT INTO schema_migrations (version) VALUES ('20140430014749');
+
+INSERT INTO schema_migrations (version) VALUES ('20140430032415');
