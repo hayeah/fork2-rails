@@ -2,5 +2,5 @@
   .col-md-2 ID
   .col-md-1
 .row
-  .col-md-2= cohort.permalink
+  .col-md-2= link_to(cohort.permalink,url_for(["admin",cohort]))
   .col-md-1= link_to("edit",edit_admin_cohort_path(cohort))

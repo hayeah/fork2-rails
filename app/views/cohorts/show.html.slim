@@ -1,23 +1,24 @@
 // @var [Course] @cohort
 // @var [CohortUser] @cohort_user
 
-- course = @cohort.course
-.row.course-progress
-  .col-md-12
-    h1= course.short_id.titleize
+| my cohort
+/ - course = @cohort.course
+/ .row.course-progress
+/   .col-md-12
+/     h1= course.short_id.titleize
 
-  .course-progress-sidebar.col-md-4.pull-right
-    / = render "checkin"
+/   .course-progress-sidebar.col-md-4.pull-right
+/     / = render "checkin"
 
-    h5 Group WeChat
-    .row.wechat-group
-      .col-md-8
-        .qr-code= image_tag("nodejs-wechat-qr.jpg")
+/     h5 Group WeChat
+/     .row.wechat-group
+/       .col-md-8
+/         .qr-code= image_tag("nodejs-wechat-qr.jpg")
 
-    / h5 Participants
+/     / h5 Participants
 
-  .col-md-8
-    / = render "progress_grid"
-    = render "cohorts/lessons", :lessons => course.lessons, :cohort => @cohort, :cohort_user => @cohort_user
+/   .col-md-8
+/     / = render "progress_grid"
+/     = render "cohorts/lessons", :lessons => course.lessons, :cohort => @cohort, :cohort_user => @cohort_user
 
 / = render "checkin_modal_form"

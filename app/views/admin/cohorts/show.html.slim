@@ -4,12 +4,14 @@
 h3 Cohort Users (#{users.count})
 
 .row
+  .col-md-1
   .col-md-2 name
   .col-md-3 email
   .col-md-2 github
   .col-md-2 discourse
 - users.each do |user|
   .row
+    .col-md-1= button_to("login",admin_pretend_login_path(github_id: user.github_id))
     .col-md-2= user.name
     .col-md-3= user.email
     .col-md-2= user.github_id

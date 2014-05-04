@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   include Auth::Grant
   def create
     # http://developer.github.com/v3/users/#response
-    github_id = github_user["login"]
+    github_id = github_user["login"].downcase
 
     if user = User.find_by(:github_id => github_id)
       auth_user(user)

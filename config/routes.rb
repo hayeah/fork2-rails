@@ -8,8 +8,6 @@ Fork::Application.routes.draw do
 
   get '/login', to: "sessions#login", as: "login"
 
-
-
   controller :api, :path => "api" do
     get :auth
     post :auth
@@ -26,7 +24,12 @@ Fork::Application.routes.draw do
     resources :lessons
   end
 
-  get '/admin', to: "admin#check_auth"
+  # get '/admin', to: "admin#check_auth"
+
+  controller :admin, :path => "admin" do
+    get "/", :action => :index, :as => "admin_index"
+    post :pretend_login, :as => "admin_pretend_login"
+  end
 
   namespace :admin do
     # resources :users do
