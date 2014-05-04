@@ -4,6 +4,7 @@ class CreateCohortLessons < ActiveRecord::Migration
       t.integer :cohort_id, :null => false
       t.string :permalink, :null => false
       t.string :discourse_thread_url
+      t.string :title
       t.integer :position
     end
 

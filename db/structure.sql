@@ -35,7 +35,7 @@ SET default_with_oids = false;
 CREATE TABLE checkins (
     id integer NOT NULL,
     cohort_user_id integer NOT NULL,
-    lesson_id integer NOT NULL,
+    cohort_lesson_id integer NOT NULL,
     time_spent double precision,
     difficulty integer,
     feedback text,
@@ -72,6 +72,7 @@ CREATE TABLE cohort_lessons (
     cohort_id integer NOT NULL,
     permalink character varying(255) NOT NULL,
     discourse_thread_url character varying(255),
+    title character varying(255),
     "position" integer
 );
 
@@ -427,10 +428,10 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_checkins_on_cohort_user_id_and_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_checkins_on_cohort_user_id_and_cohort_lesson_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX index_checkins_on_cohort_user_id_and_lesson_id ON checkins USING btree (cohort_user_id, lesson_id);
+CREATE UNIQUE INDEX index_checkins_on_cohort_user_id_and_cohort_lesson_id ON checkins USING btree (cohort_user_id, cohort_lesson_id);
 
 
 --
@@ -523,3 +524,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140430014749');
 INSERT INTO schema_migrations (version) VALUES ('20140430032415');
 
 INSERT INTO schema_migrations (version) VALUES ('20140504152211');
+
+INSERT INTO schema_migrations (version) VALUES ('20140504162504');

@@ -11,6 +11,10 @@ class Cohort < ActiveRecord::Base
 
   has_many :cohort_lessons
 
+  def active_lessons
+    cohort_lessons.order("position asc")
+  end
+
   def cohort_users_json
   end
 

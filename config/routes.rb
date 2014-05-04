@@ -15,14 +15,15 @@ Fork::Application.routes.draw do
   end
 
   resources :cohorts do
-    resources :lessons do
-      resource :checkin
+    member do
+      get "checkin/:cohort_lesson_id", :action => :checkin
+      match "checkin/:cohort_lesson_id", :via => [:post,:patch], :action => :do_checkin
     end
   end
 
-  resources :courses do
-    resources :lessons
-  end
+  # resources :courses do
+  #   resources :lessons
+  # end
 
   # get '/admin', to: "admin#check_auth"
 

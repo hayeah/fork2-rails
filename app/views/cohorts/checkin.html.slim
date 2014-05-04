@@ -1,13 +1,19 @@
 // @var [Cohort] cohort Current cohort of the user
 // @var [Lesson] lesson Lesson to checkin
 // @var [Checkin] checkin Checkin object for form
+- lesson = @lesson
 .row: .col-md-12
-  h3 #{@lesson.title} - Checkin
+  - if msg = flash[:success]
+    div.alert.alert-success= msg
+  - if msg = flash[:error]
+    div.alert.alert-error= msg
 
-  = bootstrap_form_for(@checkin,:url => cohort_lesson_checkin_path(@cohort,@lesson)) do |f|
-    = f.text_field :time_spent, :placeholder => 1.5
+  h3 #{lesson.title} - 打卡
+
+  = bootstrap_form_for(@checkin,:url => {:action => :do_checkin}) do |f|
+    = f.text_field :time_spent, :placeholder => 1.5, :label => "耗时"
     = f.select :difficulty, [["1 - Too Easy", 1],["2 - Simple", 2],["3 - OK", 3],["4 - Hard", 4],["5 - Too Hard", 5]], :selected => 3
-    = f.text_area :feedback, :rows => 5
+    = f.text_area :feedback, :rows => 5, :label => "做课程遇到了什么问题？那些什么文档帮助你解决了问题？ (Markdown 格式)"
     - if @checkin.persisted?
       = f.submit "Update"
     - else

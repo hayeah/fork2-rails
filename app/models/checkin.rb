@@ -14,9 +14,9 @@
 
 class Checkin < ActiveRecord::Base
   belongs_to :cohort_user
-  belongs_to :lesson
+  belongs_to :cohort_lesson
 
-  validates_presence_of :lesson, :cohort_user, :time_spent, :difficulty, :feedback
+  validates_presence_of :cohort_lesson, :cohort_user, :time_spent, :difficulty, :feedback
   validate :time_spent, :numericality => {
     :greater_than => 0,
     :less_than => 24
@@ -27,5 +27,5 @@ class Checkin < ActiveRecord::Base
     :less_than => 6
   }
 
-  validates_uniqueness_of :lesson_id, :scope => :cohort_user_id, :message => "already checked in"
+  validates_uniqueness_of :cohort_lesson_id, :scope => :cohort_user_id, :message => "already checked in"
 end
