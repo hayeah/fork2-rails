@@ -36,7 +36,7 @@ class Admin::CohortsController < AdminController
     cohort
   end
 
-  # must have both email and github_id
+  # json: email, email, github_id
   def update_users
     records = JSON.parse(params[:cohort][:cohort_users_json])
 
@@ -60,18 +60,19 @@ class Admin::CohortsController < AdminController
 
   def link_discourse_users
     records = JSON.parse(params[:cohort][:discourse_users_json])
-    # email, github_id, discourse_username
+    # json: email, github_id, username
     errors = []
     records.each do |record|
       user = User.find_by(email: record["email"].downcase) || User.find_by(github_id: record["github_id"].downcase)
-      if user.nil?
-        errors.push({error: "cannot associate discourse user",email: record["email"]})
-        next
-      end
-      user.discourse_username = record["discourse_username"]
+      next if user.nil?
+      user.discourse_username = record["username"]
       user.save
     end
-    render json: errors
+    # show cohort users not linked
+
+    render json: {
+      "no discourse" => cohort.users.where(discourse_username: nil)
+    }
   end
 
   private

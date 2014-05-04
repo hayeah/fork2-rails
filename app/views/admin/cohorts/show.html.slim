@@ -1,0 +1,18 @@
+- cohort = @cohort
+- users = cohort.users
+= link_to("Edit",edit_admin_cohort_path(cohort))
+h3 Cohort Users (#{users.count})
+
+.row
+  .col-md-2 name
+  .col-md-3 email
+  .col-md-2 github
+  .col-md-2 discourse
+- users.each do |user|
+  .row
+    .col-md-2= user.name
+    .col-md-3= user.email
+    .col-md-2= user.github_id
+    .col-md-2
+      - if du = user.discourse_username
+        =link_to(du,"http://d.fork2.com/users/#{du}")
