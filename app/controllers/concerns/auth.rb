@@ -42,7 +42,8 @@ module Auth
   end
 
   def redirect_after_auth
-    redirect_to root_path
+    url = session.delete(:remember_url)
+    redirect_to url || root_path
   end
 
   def signed_in?
@@ -58,7 +59,10 @@ module Auth
   end
 
   def verify_user!
-    signed_in?
+    if not signed_in?
+      session[:remember_url] = request.path
+      redirect_to login_path
+    end
   end
 
   alias_method :me, :current_user
