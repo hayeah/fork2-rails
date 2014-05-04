@@ -1,6 +1,6 @@
 require "csv"
 class Admin::CohortsController < AdminController
-  protect_from_forgery :except => [:create]
+  # protect_from_forgery :except => [:create]
 
   def index
     @cohorts = Cohort.all
@@ -32,13 +32,13 @@ class Admin::CohortsController < AdminController
     @cohort = Cohort.new
   end
 
-  def update_users
-    csv = params[:cohort][:cohort_users_csv]
-    reader = CSV.new(csv)
+  def show
+    cohort
+  end
 
-    headers = reader.shift
-    rows = reader.read
-    records = rows.map { |row| Hash[headers.zip(row)] }
+  # must have both email and github_id
+  def update_users
+    records = JSON.parse(params[:cohort][:cohort_users_json])
 
     keys = [:email]
     fields = [:name,:github_id]
@@ -54,6 +54,8 @@ class Admin::CohortsController < AdminController
 
       CohortUser.find_or_create_by(:user_id => user.id, :cohort_id => cohort.id)
     end
+
+    render "ok"
   end
 
   def link_discourse_users

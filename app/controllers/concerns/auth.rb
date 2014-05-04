@@ -21,6 +21,10 @@ module Auth
     end
   end
 
+  def is_api?
+    request.headers["API-Token"]
+  end
+
   def api_token
     request.headers["API-Token"]
   end

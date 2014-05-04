@@ -9,7 +9,7 @@
 class Cohort < ActiveRecord::Base
   include Permalink
 
-  def cohort_users_csv
+  def cohort_users_json
   end
 
   def discourse_users_json

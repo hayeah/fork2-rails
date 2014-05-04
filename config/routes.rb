@@ -19,6 +19,8 @@ Fork::Application.routes.draw do
     resources :lessons
   end
 
+  get '/admin', to: "admin#check_auth"
+
   namespace :admin do
     # resources :users do
     #   collection do

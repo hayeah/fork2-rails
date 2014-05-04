@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     self.github_id = self.github_id.downcase
   end
 
+  def leave_cohort(cohort)
+    cohort_users.where(cohort_id: cohort).destroy_all
+  end
+
   def github_data=(data)
     self["github_data"] = data
     self.email ||= data["email"]
