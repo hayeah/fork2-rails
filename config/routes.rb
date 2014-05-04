@@ -1,7 +1,14 @@
 Fork::Application.routes.draw do
+  controller :sessions, :path => "auth" do
+    get :not_registered
+  end
+
   get '/auth/:provider', to: "sessions#new", as: "auth"
   get '/auth/:provider/callback', to: 'sessions#create'
+
   get '/login', to: "sessions#login", as: "login"
+
+
 
   controller :api, :path => "api" do
     get :auth
