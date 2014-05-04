@@ -43,6 +43,7 @@ Fork::Application.routes.draw do
     resources :cohorts do
       member do
         patch "update_users"
+        patch "update_lessons"
         patch "link_discourse_users"
       end
     end

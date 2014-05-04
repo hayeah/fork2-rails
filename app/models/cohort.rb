@@ -9,6 +9,8 @@
 class Cohort < ActiveRecord::Base
   include Permalink
 
+  has_many :cohort_lessons
+
   def cohort_users_json
   end
 

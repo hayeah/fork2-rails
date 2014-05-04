@@ -1,6 +1,25 @@
 - cohort = @cohort
 - users = cohort.users
+- lessons = cohort.cohort_lessons.order("position asc")
+
 = link_to("Edit",edit_admin_cohort_path(cohort))
+
+h3 Lessons
+
+.row
+  .col-md-1 position
+  .col-md-3 permalink
+  .col-md-1 thread
+
+- lessons.each do |lesson|
+  .row
+    .col-md-1= lesson.position
+    .col-md-3= lesson.permalink
+    .col-md-1
+      = lesson.discourse_thread_url
+
+
+
 h3 Cohort Users (#{users.count})
 
 .row

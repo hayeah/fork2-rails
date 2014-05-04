@@ -36,6 +36,25 @@ class Admin::CohortsController < AdminController
     cohort
   end
 
+  # json: title, discourse_thread_url
+  def update_lessons
+    # implicit position by position in posted json
+    records = JSON.parse(params[:cohort_lessons_json])
+    CohortLesson.transaction do
+      cohort.cohort_lessons.update_all("position" => nil)
+      # TODO set all positions to null
+      records.each_with_index do |record,i|
+        title = record["title"]
+        permalink = title.downcase.parameterize
+        lesson = CohortLesson.find_or_initialize_by(:permalink => permalink, :cohort_id => cohort.id)
+        lesson.position = i
+        lesson.discourse_thread_url = record["discourse_thread_url"]
+        lesson.save
+      end
+    end
+    redirect_to url_for(["admin",cohort])
+  end
+
   # json: email, email, github_id
   def update_users
     records = JSON.parse(params[:cohort][:cohort_users_json])
