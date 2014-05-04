@@ -3,6 +3,11 @@ class SessionsController < ApplicationController
   def login
   end
 
+  def logout
+    session.clear
+    redirect_to "/"
+  end
+
   include Auth::Grant
   def create
     # http://developer.github.com/v3/users/#response

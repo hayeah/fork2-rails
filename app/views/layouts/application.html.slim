@@ -20,7 +20,8 @@ body
           li
             - if me
               .navbar-text
-                | Hello @#{me.github_id}
+                | Hello @#{me.github_id},
+                |  #{link_to("Logout",logout_path, :method => :post)}
             - else
               a href=auth_path(:provider => :github)
                 | Sign in with Github

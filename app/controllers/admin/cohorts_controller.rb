@@ -75,7 +75,7 @@ class Admin::CohortsController < AdminController
       CohortUser.find_or_create_by(:user_id => user.id, :cohort_id => cohort.id)
     end
 
-    render "ok"
+    redirect_to url_for(["admin",cohort])
   end
 
   def link_discourse_users

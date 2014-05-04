@@ -1,6 +1,7 @@
 Fork::Application.routes.draw do
   controller :sessions, :path => "auth" do
     get :not_registered
+    post :logout
   end
 
   get '/auth/:provider', to: "sessions#new", as: "auth"
