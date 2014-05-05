@@ -1,4 +1,5 @@
 prepare:
+  git pull
 	bundle install --without=development,test
 	RAILS_ENV=production rake db:migrate
 
