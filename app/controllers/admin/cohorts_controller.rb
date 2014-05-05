@@ -47,10 +47,8 @@ class Admin::CohortsController < AdminController
         title = record["title"]
         permalink = title.downcase.parameterize
         lesson = CohortLesson.find_or_initialize_by(:permalink => permalink, :cohort_id => cohort.id)
-        lesson.title = title
         lesson.position = i
-        lesson.repo = record["repo"]
-        lesson.discourse_thread_url = record["discourse_thread_url"]
+        lesson.attributes = record.slice("repo","title","discourse_thread_id")
         lesson.save
       end
     end

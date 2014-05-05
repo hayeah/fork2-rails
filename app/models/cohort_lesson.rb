@@ -3,3 +3,4 @@ class CohortLesson < ActiveRecord::Base
   belongs_to :cohort
   has_many :checkins
 end
+
