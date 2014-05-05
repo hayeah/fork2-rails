@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.1.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
@@ -20,7 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'slim', '~> 2.0.2'
 
-gem "bootstrap_form", '~> 2.0.1'
+gem "bootstrap_form", '~> 2.1.1'
 
 
 gem 'omniauth', '~> 1.2.1'
