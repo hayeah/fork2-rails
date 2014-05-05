@@ -40,7 +40,8 @@ CREATE TABLE checkins (
     difficulty integer,
     feedback text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    discourse_post_id integer
 );
 
 
@@ -531,3 +532,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140504162504');
 INSERT INTO schema_migrations (version) VALUES ('20140505013322');
 
 INSERT INTO schema_migrations (version) VALUES ('20140505020905');
+
+INSERT INTO schema_migrations (version) VALUES ('20140505030848');
