@@ -6,4 +6,10 @@ prepare:
 server:
 	RAILS_ENV=production rails s
 
+up:
+  test -f tmp/pids/puma || bundle exec puma -e production -p 3000 --pidfile tmp/pids/puma
+
+restart:
+  kill -SIGUSR2 `cat tmp/pids/puma`
+
 .PHONY: prepare server
