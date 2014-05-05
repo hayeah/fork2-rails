@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
   has_many :test_reports
 
   before_save do |me|
-    self.email = self.email.downcase
-    self.github_id = self.github_id.downcase
+    me.email = me.email.downcase
+    me.github_id = me.github_id.downcase
   end
 
   def leave_cohort(cohort)
