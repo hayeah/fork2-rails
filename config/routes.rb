@@ -9,11 +9,11 @@ Fork::Application.routes.draw do
 
   get '/login', to: "sessions#login", as: "login"
 
-  controller :api, :path => "api" do
-    get :auth
-    post :auth
-    post :report_test
-  end
+  # controller :api, :path => "api" do
+  #   get :auth
+  #   post :auth
+  #   post :report_test
+  # end
 
   resources :cohorts do
     member do
@@ -34,6 +34,12 @@ Fork::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :checkins do
+      collection do
+        get "unpublished"
+        post "publish_all"
+      end
+    end
     # resources :users do
     #   collection do
     #     post "batch_add"

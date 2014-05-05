@@ -39,17 +39,29 @@ class Checkin < ActiveRecord::Base
   def publish_if_possible
     # if user has discourse account associated, publish
     # if not already published
-    if !user.discourse_username.empty? && !self.published?
+    if can_publish?
       discourse_poster.publish
     end
+  end
+
+  def can_publish?
+    !user.discourse_username.empty? && !self.published?
   end
 
   def self.published
     where("discourse_post_id is not null")
   end
 
+  def self.unpublished
+    where("discourse_post_id is null")
+  end
+
   def published?
     !self.discourse_post_id.nil?
+  end
+
+  def raw_post
+    discourse_poster.raw_post
   end
 end
 

@@ -1,0 +1,23 @@
+- checkins = @checkins
+- can_publish = checkins.select {|c| c.can_publish? }
+
+h3 Checkins
+
+p
+  | Can publish: #{can_publish.length}
+
+.row
+  .col-md-1 name
+  .col-md-1 github_id
+  .col-md-1 discourse_username
+
+- checkins.each do |checkin|
+  - user = checkin.user
+  .row
+    .col-md-1= user.name
+    .col-md-1= user.github_id
+    .col-md-1= user.discourse_username
+  .row
+    pre=checkin.raw_post
+
+
