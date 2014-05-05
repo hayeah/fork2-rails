@@ -49,6 +49,7 @@ class Admin::CohortsController < AdminController
         lesson = CohortLesson.find_or_initialize_by(:permalink => permalink, :cohort_id => cohort.id)
         lesson.title = title
         lesson.position = i
+        lesson.repo = record["repo"]
         lesson.discourse_thread_url = record["discourse_thread_url"]
         lesson.save
       end

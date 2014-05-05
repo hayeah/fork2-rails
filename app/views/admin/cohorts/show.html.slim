@@ -9,14 +9,21 @@ h3 Lessons
 .row
   .col-md-1 position
   .col-md-3 permalink
+  .col-md-2 repo
+  .col-md-1 checkins
   .col-md-1 thread
 
 - lessons.each do |lesson|
   .row
     .col-md-1= lesson.position
     .col-md-3= lesson.permalink
+    .col-md-2= lesson.repo
+    .col-md-1
+      - checkins = lesson.checkins
+      = checkins.count
     .col-md-1
       = lesson.discourse_thread_url
+
 
 
 
