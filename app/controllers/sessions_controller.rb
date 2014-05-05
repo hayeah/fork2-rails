@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       auth_user(user)
       redirect_after_auth
     else
-      redirect :action => :not_registered
+      redirect_to :action => :not_registered
     end
   end
 
