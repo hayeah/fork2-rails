@@ -1,8 +1,12 @@
 module Auth
+  ADMIN_KEY = "is_admin_user"
   module Grant
     private
     def auth_user(user)
       session[:auth_user] = user.id
+      if user.is_admin?
+        session[ADMIN_KEY] = true
+      end
     end
   end
 
@@ -51,7 +55,7 @@ module Auth
   end
 
   def admin?
-    me && me.is_admin?
+    !session[ADMIN_KEY].nil?
   end
 
   def verify_admin!

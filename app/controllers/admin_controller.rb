@@ -1,7 +1,8 @@
 class AdminController < ApplicationController
   include Auth
   include Auth::Grant
-  # before_action :verify_admin!
+  before_action :verify_admin!
+
   layout "admin"
 
   def index
