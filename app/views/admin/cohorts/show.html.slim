@@ -12,6 +12,7 @@ h3 Lessons
   .col-md-2 repo
   .col-md-1 checkins
   .col-md-1 thread
+  .col-md-1 sofa
 
 - lessons.each do |lesson|
   .row
@@ -23,6 +24,8 @@ h3 Lessons
       = checkins.count
     .col-md-1
       = lesson.discourse_thread_id
+    .col-md-1
+      = link_to("sofa",checksofa_cohort_cohort_lesson_path(cohort,lesson,format: "jpg"))
 
 
 

@@ -19,6 +19,13 @@ Fork::Application.routes.draw do
     member do
       get "checkin/:cohort_lesson_id", :action => :checkin
       match "checkin/:cohort_lesson_id", :via => [:post,:patch], :action => :do_checkin
+
+    end
+
+    resources :cohort_lessons, :path => "lessons" do
+      member do
+        get "checksofa"
+      end
     end
   end
 
