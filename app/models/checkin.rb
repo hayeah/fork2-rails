@@ -18,12 +18,13 @@ class Checkin < ActiveRecord::Base
   has_one :user, :through => :cohort_user
 
   validates_presence_of :cohort_lesson, :cohort_user, :time_spent, :difficulty, :feedback
-  validate :time_spent, :numericality => {
+
+  validates :time_spent, :numericality => {
     :greater_than => 0,
     :less_than => 24
   }
 
-  validate :difficulty, :numericality => {
+  validates :difficulty, :numericality => {
     :greater_than => 0,
     :less_than => 6
   }
