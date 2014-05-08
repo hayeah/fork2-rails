@@ -36,6 +36,15 @@ class Checkin < ActiveRecord::Base
     Checkin::DiscoursePoster.new(self)
   end
 
+  # check if sofa is available
+  def maybe_become_sofa
+    become_sofa if self.cohort_lesson.sofa_empty?
+  end
+
+  def become_sofa
+    self.cohort_lesson.set_sofa self
+  end
+
   def publish_if_possible
     # if user has discourse account associated, publish
     # if not already published
