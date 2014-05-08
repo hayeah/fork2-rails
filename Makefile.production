@@ -2,6 +2,7 @@ pumapid=tmp/pids/puma
 puma=bundle exec puma -e production -p 3000 --pidfile ${pumapid}
 
 prepare:
+	git reset --hard
 	git pull
 	bundle install --without=development,test
 	RAILS_ENV=production rake db:migrate
@@ -10,6 +11,6 @@ up:
 	test -f ${pumapid} || ${puma}
 
 restart:
-	(test -f ${pumapid} && kill -SIGUSR2 `cat ${pumapid}`) || ${puma}
+	(test -f ${pumapid} && /bin/kill -s SIGUSR2 `cat ${pumapid}`) || ${puma}
 
 .PHONY: prepare server
