@@ -32,6 +32,7 @@ class Checkin < ActiveRecord::Base
   validates_uniqueness_of :cohort_lesson_id, :scope => :cohort_user_id, :message => "already checked in"
 
   after_create :publish_if_possible
+  after_create :maybe_become_sofa
 
   def discourse_poster
     Checkin::DiscoursePoster.new(self)
