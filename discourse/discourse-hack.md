@@ -28,7 +28,10 @@ so... what do i do?
 As root:
 
 ```
-sudo -u discourse pg_dump discourse > /shared/psql-04-28-2014.sql
+ssh root@0.0.0.0 -p 2222 <<HERE
+cd /shared
+sudo -u discourse pg_dump discourse > discourse-dump.sql
+HERE
 ```
 
 # associate users
