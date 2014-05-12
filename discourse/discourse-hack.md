@@ -70,3 +70,39 @@ end
 
 See https://meta.discourse.org/t/installing-plugins-on-docker-install/13364/8
 
+
+# setting github API for dev
+
+Override
+
+```
+SiteSetting
+  github_client_secret
+  github_client_id
+
+SiteSetting.where(name: "github_client_id").update_all(value: "22f3151c76ccc6efe386")
+SiteSetting.where(name: "github_client_secret").update_all(value: "e4d8d665806f7f34f206cbcedcb078247046472f")
+```
+
+Also, need to make sure that redirect_uri matches. So run rails on port 4000 inside and outside the vm.
+
+# creating a new topic
+
+Discouse apparently creates a new topic by posting to `/post`
+
+```
+raw:and we are going to say something quite random
+reply_to_post_number:
+category:5
+archetype:regular
+title:hello world this is a new topic
+auto_close_time:
+```
+
+If a post is not replying to a topic, it creates a new topic:
+
+```
+def new_topic?
+  @opts[:topic_id].blank?
+end
+```

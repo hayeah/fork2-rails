@@ -17,7 +17,7 @@ Fork::Application.routes.draw do
 
   resources :cohorts do
     member do
-      get "checkin/:cohort_lesson_id", :action => :checkin
+      get "checkin/:cohort_lesson_id", :action => :checkin, :as => :checkin
       match "checkin/:cohort_lesson_id", :via => [:post,:patch], :action => :do_checkin
 
     end
