@@ -52,3 +52,21 @@ it's more work than i want to deal with to fuss around with discourse. let me ju
   + error if cannot find a cohort member to associate with
 
 GithubUserInfo.includes(:user)
+
+# Plugin
+
+application.rb calls this:
+
+```
+def Discourse.activate_plugins!
+  @plugins = Plugin::Instance.find_all("#{Rails.root}/plugins")
+  @plugins.each { |plugin| plugin.activate! }
+end
+```
+
+`plugin#activate!` instance_eval the plugin.rb source in the context of a Plugin::Instance. See available methods in `lib/plugin/instance.rb`
+
+## How to get a plugin to run in docker env
+
+See https://meta.discourse.org/t/installing-plugins-on-docker-install/13364/8
+
