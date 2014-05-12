@@ -8,6 +8,7 @@
 h3 Lessons
 
 .row
+  .col-md-1
   .col-md-1 position
   .col-md-3 permalink
   .col-md-2 repo
@@ -17,6 +18,7 @@ h3 Lessons
 
 - lessons.each do |lesson|
   .row
+    .col-md-1= button_to("publish",admin_cohort_cohort_lesson_publish_path(cohort,lesson))
     .col-md-1= lesson.position
     .col-md-3= lesson.permalink
     .col-md-2= lesson.repo
@@ -24,7 +26,7 @@ h3 Lessons
       - checkins = lesson.checkins
       = checkins.count
     .col-md-1
-      = lesson.discourse_thread_id
+      = lesson.discourse_post_id
     .col-md-1
       = link_to("sofa",checksofa_cohort_cohort_lesson_path(cohort,lesson,format: "jpg"))
 

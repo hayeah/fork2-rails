@@ -19,7 +19,6 @@ Fork::Application.routes.draw do
     member do
       get "checkin/:cohort_lesson_id", :action => :checkin, :as => :checkin
       match "checkin/:cohort_lesson_id", :via => [:post,:patch], :action => :do_checkin
-
     end
 
     resources :cohort_lessons, :path => "lessons" do
@@ -60,6 +59,10 @@ Fork::Application.routes.draw do
         patch "update_users"
         patch "update_lessons"
         patch "link_discourse_users"
+      end
+
+      resources :cohort_lessons, :path => "lessons" do
+        post :publish
       end
     end
   end

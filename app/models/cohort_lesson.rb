@@ -25,6 +25,10 @@ class CohortLesson < ActiveRecord::Base
     DiscoursePublisher.new(self)
   end
 
+  def publish
+    publisher.publish
+  end
+
   def published?
     self.discourse_topic_id.present?
   end
