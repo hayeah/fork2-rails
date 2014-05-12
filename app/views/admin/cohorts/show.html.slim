@@ -19,7 +19,7 @@ h3 Lessons
 - lessons.each do |lesson|
   .row
     .col-md-1= button_to("publish",admin_cohort_cohort_lesson_publish_path(cohort,lesson))
-    .col-md-1= lesson.position
+    .col-md-1= lesson.number
     .col-md-3= lesson.permalink
     .col-md-2= lesson.repo
     .col-md-1

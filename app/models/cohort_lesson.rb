@@ -21,6 +21,10 @@ class CohortLesson < ActiveRecord::Base
     @previous_lesson = self.cohort.cohort_lessons.where(position: self.position - 1).first
   end
 
+  def number
+    position + 1
+  end
+
   def publisher
     DiscoursePublisher.new(self)
   end
