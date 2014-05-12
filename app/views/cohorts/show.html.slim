@@ -7,11 +7,11 @@ h3 my lessons
 
 
 - lessons.each do |lesson|
-  .row
-    .col-md-1 Lesson - #{lesson.position + 1}
-    .col-md-4= lesson.title
-    .col-md-2
-      - if lesson.published?
+  - if lesson.published?
+    .row
+      .col-md-1 Lesson - #{lesson.position + 1}
+      .col-md-4= lesson.title
+      .col-md-2
         = link_to("check in",:action => :checkin, :cohort_lesson_id => lesson.permalink)
 
 / - course = @cohort.course
