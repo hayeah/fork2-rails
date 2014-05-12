@@ -26,7 +26,7 @@ class CohortLesson < ActiveRecord::Base
   end
 
   def published?
-    lesson.discourse_topic_id.present?
+    self.discourse_topic_id.present?
   end
 
   class DiscoursePublisher < Struct.new(:lesson)

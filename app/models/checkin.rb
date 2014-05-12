@@ -82,7 +82,7 @@ class Checkin::DiscoursePoster < Struct.new(:checkin)
   end
 
   def publish
-    topic_id = lesson.discourse_thread_id
+    topic_id = lesson.discourse_topic_id
     user_id = user.discourse_username
     post = api.create_post(topic_id,user_id,raw_post)
     checkin.discourse_post_id = post["id"]

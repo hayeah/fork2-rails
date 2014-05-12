@@ -11,9 +11,8 @@ h3 my lessons
     .col-md-1 Lesson - #{lesson.position + 1}
     .col-md-4= lesson.title
     .col-md-2
-      - if !lesson.discourse_thread_id.nil?
+      - if lesson.published?
         = link_to("check in",:action => :checkin, :cohort_lesson_id => lesson.permalink)
-
 
 / - course = @cohort.course
 / .row.course-progress

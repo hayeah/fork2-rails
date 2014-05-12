@@ -75,7 +75,6 @@ CREATE TABLE cohort_lessons (
     title character varying(255),
     "position" integer,
     repo character varying(255),
-    discourse_thread_id integer,
     sofa_checkin_id integer,
     discourse_post_id integer,
     discourse_topic_id integer,
@@ -544,4 +543,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140508025028');
 INSERT INTO schema_migrations (version) VALUES ('20140512114930');
 
 INSERT INTO schema_migrations (version) VALUES ('20140512121408');
+
+INSERT INTO schema_migrations (version) VALUES ('20140512125248');
 
