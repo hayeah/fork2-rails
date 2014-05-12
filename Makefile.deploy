@@ -1,0 +1,27 @@
+HOST=fork2.com
+RAILS_ROOT=~/fork2-web
+ssh=ssh -t ${HOST}
+cdroot=cd ${RAILS_ROOT}
+makep=${cdroot} && make -f Makefile.production
+
+assets:
+	RAILS_ENV=production rake assets:precompile
+	rsync -Paz public/assets/ ${HOST}:${RAILS_ROOT}/public/assets
+
+push:
+	git push -f deploy
+
+config:
+	rsync -Paz config-production/ ${HOST}:${RAILS_ROOT}/config
+
+prepare:
+	${ssh} "${makep} prepare"
+
+# push config
+deploy: push config
+	${ssh} "${makep} prepare restart"
+
+console:
+	${ssh} "${cdroot} && RAILS_ENV=production bundle exec rails c"
+
+.PHONY: assets push config deploy prepare
