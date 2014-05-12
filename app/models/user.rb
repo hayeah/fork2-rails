@@ -27,6 +27,21 @@ class User < ActiveRecord::Base
     me.github_id = me.github_id.downcase
   end
 
+  def self.with_no_discourse
+    self.where(discourse_username: nil)
+  end
+
+  def link_discourse_user!
+    self.discourse_username = find_discourse_username
+    self.save!
+  end
+
+  def find_discourse_username
+    api = DiscourseAPI.new
+    result = api.user(github_id: self.github_id,email: self.email)
+    result["discourse_username"]
+  end
+
   def leave_cohort(cohort)
     cohort_users.where(cohort_id: cohort).destroy_all
   end

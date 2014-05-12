@@ -3,6 +3,7 @@
 - lessons = cohort.cohort_lessons.order("position asc")
 
 = link_to("Edit",edit_admin_cohort_path(cohort))
+= button_to("Link Discourse Users",link_discourse_users_admin_cohort_path(cohort),:method => :patch)
 
 h3 Lessons
 

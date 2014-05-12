@@ -78,20 +78,12 @@ class Admin::CohortsController < AdminController
   end
 
   def link_discourse_users
-    records = JSON.parse(params[:cohort][:discourse_users_json])
-    # json: email, github_id, username
-    errors = []
-    records.each do |record|
-      user = User.find_by(email: record["email"].downcase) || User.find_by(github_id: record["github_id"].downcase)
-      next if user.nil?
-      user.discourse_username = record["username"]
-      user.save
+    users = cohort.users.with_no_discourse
+    users.each do |user|
+      user.link_discourse_user! rescue nil
     end
-    # show cohort users not linked
 
-    render json: {
-      "no discourse" => cohort.users.where(discourse_username: nil)
-    }
+    redirect_to url_for(["admin",cohort])
   end
 
   private
