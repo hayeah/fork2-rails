@@ -137,7 +137,8 @@ ALTER SEQUENCE cohort_users_id_seq OWNED BY cohort_users.id;
 
 CREATE TABLE cohorts (
     id integer NOT NULL,
-    permalink character varying(255) NOT NULL
+    permalink character varying(255) NOT NULL,
+    discourse_category_name character varying(255)
 );
 
 
@@ -545,4 +546,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140512114930');
 INSERT INTO schema_migrations (version) VALUES ('20140512121408');
 
 INSERT INTO schema_migrations (version) VALUES ('20140512125248');
+
+INSERT INTO schema_migrations (version) VALUES ('20140513012239');
 

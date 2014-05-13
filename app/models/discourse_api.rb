@@ -4,10 +4,10 @@ class DiscourseAPI
 
   MYAPI = "#{HOST}/myapi"
 
-  def create_topic(username,title,raw,category_id=nil)
+  def create_topic(username,title,raw,category)
     # raw:and we are going to say something quite random
     # reply_to_post_number:
-    # category:5
+    # category:category_name
     # archetype:regular
     # title:hello world this is a new topic
     url = "#{HOST}/posts"
@@ -15,7 +15,7 @@ class DiscourseAPI
       raw: raw,
       title: title,
       archetype: "regular",
-      category_id: category_id
+      category: category
     }, {
       :accept => :json,
       :params => {
@@ -26,10 +26,10 @@ class DiscourseAPI
     JSON.parse(r.body)
   end
 
-  def update_topic(post_id,username,title,raw,category_id=nil)
+  def update_topic(post_id,username,title,raw,category)
     # raw:and we are going to say something quite random
     # reply_to_post_number:
-    # category:5
+    # category:category_name
     # archetype:regular
     # title:hello world this is a new topic
     url = "#{HOST}/posts/#{post_id}"
@@ -37,7 +37,7 @@ class DiscourseAPI
       post: {
         raw: raw,
         archetype: "regular",
-        category_id: category_id
+        category: category
       },
       title: title
     }, {
@@ -69,6 +69,18 @@ class DiscourseAPI
     url = "#{MYAPI}/user"
     query = query.slice(:email,:github_id)
     r = RestClient.get url, :params => query.merge(api_key: TOKEN)
+    JSON.parse(r.body)
+  end
+
+  # Find category by name
+  #
+  # Example:
+  #   category("公告") # => {"id"=>5, "name"=>"公告"}
+  def category(name)
+    url = "#{MYAPI}/category/#{URI.escape name}"
+    r = RestClient.get url, :params => {
+      :api_key => TOKEN
+    }
     JSON.parse(r.body)
   end
 end

@@ -92,8 +92,12 @@ HERE
 HERE
     end
 
+    def category
+      lesson.cohort.discourse_category_name
+    end
+
     def create_topic
-      r = api.create_topic(coach_username,title,placeholder_content,category_id=nil)
+      r = api.create_topic(coach_username,title,placeholder_content,category)
       lesson.discourse_post_id = r["id"]
       lesson.discourse_topic_id = r["topic_id"]
       lesson.save!
@@ -104,7 +108,7 @@ HERE
     end
 
     def update_topic
-      api.update_topic(lesson.discourse_post_id,coach_username,title,markdown_content,category_id=nil)
+      api.update_topic(lesson.discourse_post_id,coach_username,title,markdown_content,category)
     end
 
     def publish
