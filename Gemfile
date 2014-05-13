@@ -46,6 +46,8 @@ gem "celluloid", "~> 0.15.2"
 
 gem "course_builder", :path => "course_builder"
 
+gem 'newrelic_rpm'
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
