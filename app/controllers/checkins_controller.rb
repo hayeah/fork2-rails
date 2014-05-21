@@ -8,7 +8,10 @@ class CheckinsController < ApplicationController
   end
 
   def edit
-    cohort; lesson; checkin
+    # cohort; lesson; checkin
+    @checkin=Checkin.find(4)
+    @lesson=CohortLesson.find(1)
+    @cohort=Cohort.find(1)
   end
 
   def update

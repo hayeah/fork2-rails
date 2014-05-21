@@ -44,7 +44,7 @@ gem "rest-client", '~> 1.6.7'
 # Concurrent Programming
 gem "celluloid", "~> 0.15.2"
 
-gem "course_builder", :path => "course_builder"
+#gem "course_builder", :path => "course_builder"
 
 
 group :doc do

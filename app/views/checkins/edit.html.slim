@@ -3,6 +3,7 @@
 // @var [Checkin] checkin Checkin object for form
 .row: .col-md-12
   h3 #{@lesson.title} - Checkin
+  h2 "ddd"
 
   - unless @checkin.errors.empty?
     - @checkin.errors.full_messages.each do |error|
@@ -17,3 +18,5 @@
       = f.submit "Update"
     - else
       = f.submit "Save"
+
+

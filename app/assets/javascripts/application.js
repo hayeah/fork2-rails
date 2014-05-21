@@ -15,6 +15,3 @@
 //= require turbolinks
 //= require underscore/underscore
 //= require bootstrap/dist/js/bootstrap
-
-
-//= require_tree .
