@@ -6366,7 +6366,7 @@ var Showdown={extensions:{}},forEach=Showdown.forEach=function(a,b){if(typeof a.
         var preview = document.getElementsByClassName('rendered-markdown')[0];
         preview.innerHTML = converter.makeHtml(editor.getValue());
 
-        updateWordCount();
+        // updateWordCount();
     }
 
     $(document).ready(function () {

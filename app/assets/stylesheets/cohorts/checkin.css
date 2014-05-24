@@ -1,0 +1,29 @@
+.markdown{
+	margin-top: 20px;
+	font-size:18px;	
+}
+
+.editor{
+	border: solid 2px #eee;
+	width:49%;
+	display: inline-block;
+	height: 300px;
+	overflow: auto;
+	margin-right: 0.5%;
+	padding: 10px;
+}
+
+.editor textarea{
+	width:100%;
+	height:100%;
+}
+
+.preview{
+	border: solid 2px #eee;
+	display: inline-block;
+	width:49%;
+	overflow: auto;
+	height: 300px;
+	margin-left: 0.5%;
+	padding: 10px;
+}

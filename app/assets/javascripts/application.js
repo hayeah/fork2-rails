@@ -15,3 +15,5 @@
 //= require turbolinks
 //= require underscore/underscore
 //= require bootstrap/dist/js/bootstrap
+
+//= require ghostdown.js
