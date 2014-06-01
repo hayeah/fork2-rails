@@ -16,12 +16,14 @@
     .description
       label "做课程遇到了什么问题？那些什么文档帮助你解决了问题？ (Markdown 格式)"
 
-      .markdown 
-        .editor
+      .me-main 
+        .me-editor
           textarea#entry-markdown  autofocus=true
 
-        .preview 
+        .me-preview 
           .rendered-markdown
+
+        .entry-word-count
 
     - if @checkin.persisted?
       = f.submit "Update"
