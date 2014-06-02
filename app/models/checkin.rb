@@ -4,12 +4,13 @@
 #
 #  id             :integer          not null, primary key
 #  cohort_user_id :integer          not null
-#  lesson_id      :integer          not null
+#  cohort_lesson_id      :integer          not null
 #  time_spent     :float
 #  difficulty     :integer
 #  feedback       :text
 #  created_at     :datetime
 #  updated_at     :datetime
+#  discourse_post_id :integer 
 #
 
 class Checkin < ActiveRecord::Base
@@ -82,11 +83,18 @@ class Checkin::DiscoursePoster < Struct.new(:checkin)
   end
 
   def publish
+
     topic_id = lesson.discourse_topic_id
-    user_id = user.discourse_username
-    post = api.create_post(topic_id,user_id,raw_post)
-    checkin.discourse_post_id = post["id"]
-    checkin.save
+    user_name = user.discourse_username
+
+    if checkin.published?
+      api.update_post(checkin.discourse_post_id,user_name,raw_post)
+    else
+      post = api.create_post(topic_id,user_name,raw_post)
+      checkin.discourse_post_id = post["id"]
+      checkin.save
+    end
+
   end
 
   def lesson
