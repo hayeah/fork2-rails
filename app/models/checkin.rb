@@ -10,7 +10,7 @@
 #  feedback       :text
 #  created_at     :datetime
 #  updated_at     :datetime
-#  discourse_post_id :integer 
+#  discourse_post_id :integer
 #
 
 class Checkin < ActiveRecord::Base
@@ -32,7 +32,7 @@ class Checkin < ActiveRecord::Base
 
   validates_uniqueness_of :cohort_lesson_id, :scope => :cohort_user_id, :message => "already checked in"
 
-  after_create :publish_if_possible
+  after_save :publish_if_possible
   after_create :maybe_become_sofa
 
   def discourse_poster
@@ -49,15 +49,15 @@ class Checkin < ActiveRecord::Base
   end
 
   def publish_if_possible
-    # if user has discourse account associated, publish
-    # if not already published
+    # if already posted will update the post
     if can_publish?
       discourse_poster.publish
     end
   end
 
+  # If user has discourse account associated then publish
   def can_publish?
-    !user.discourse_username.empty? && !self.published?
+    !user.discourse_username.empty?
   end
 
   def self.published
