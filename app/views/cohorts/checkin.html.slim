@@ -16,11 +16,12 @@
     .description
       label "做课程遇到了什么问题？那些什么文档帮助你解决了问题？ (Markdown 格式)"
 
-      .me-main 
+      .me-main
         .me-editor
-          textarea#entry-markdown  autofocus=true
+          textarea#entry-markdown autofocus=true name="checkin[feedback]"
+            = @checkin.feedback
 
-        .me-preview 
+        .me-preview
           .rendered-markdown
 
         .entry-word-count
