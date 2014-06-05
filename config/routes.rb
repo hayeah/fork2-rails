@@ -65,6 +65,8 @@ Fork::Application.routes.draw do
         post :publish
       end
     end
+
+    get "status" , to: "status#index"
   end
 
   root "main#root"
