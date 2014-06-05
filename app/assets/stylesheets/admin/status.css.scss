@@ -75,7 +75,7 @@ h1{
 		}
 	}
 
-	.user-status{
+	.user-courses{
 
 		margin-left: 50px;
 
@@ -94,6 +94,24 @@ h1{
 			span.percentage{
 				color:#d2608a;
 				font-size: 1.3em;
+			}
+		}
+	}
+
+	.user-timeline{
+
+		margin-top: 20px;
+		margin-left: 50px;
+
+		.day{
+			width:10px;
+			height:20px;
+			display: inline-block;
+			background-color:gray;
+			margin-right: 10px;
+
+			&.checked{
+				background-color: #3062bb;
 			}
 		}
 	}

@@ -17,7 +17,7 @@ ul
           span.user-name = u.user.name
           span.user-email = u.user.email
 
-        .user-status
+        .user-courses
           // should notice array size is @total+1,because lesson is 1-based index
           - status=Array.new(@total+1,"undone")
           - u.checkins.each do |c| status[c.cohort_lesson_id]=c.difficulty end
@@ -28,3 +28,9 @@ ul
 
           - 1.upto(@total).each do |number|
             .lesson class="difficulty-#{status[number]}" = number
+
+        .user-timeline
+          - timeline=[]
+          - u.checkins.each do |c| timeline.push(c.created_at.to_date.mjd-@start_mjd) end
+          - 1.upto(@intervals) do |t|
+            .day class=( timeline.include?(t) ? "checked" : "unchecked" )
