@@ -1,1 +1,30 @@
 h1 User Status Tracking
+.legend
+  .legend-wrapper
+    p Legend:
+    .lesson.difficulty-1 Too easy
+    .lesson.difficulty-2 Easy
+    .lesson.difficulty-3 Normal
+    .lesson.difficulty-4 Hard
+    .lesson.difficulty-5 Too hard
+    .lesson.difficulty-undone Undone
+
+ul
+  - @users.each do |u|
+    li
+      .item
+        p.user-info
+          span.user-name = u.user.name
+          span.user-email = u.user.email
+
+        .user-status
+          // should notice array size is @total+1,because lesson is 1-based index
+          - status=Array.new(@total+1,"undone")
+          - u.checkins.each do |c| status[c.cohort_lesson_id]=c.difficulty end
+          - percentage=( @total+1-status.count("undone") ).fdiv(@total)
+          p.finish
+            | Finish:
+            span.percentage = format("%.2f%%",percentage*100)
+
+          - 1.upto(@total).each do |number|
+            .lesson class="difficulty-#{status[number]}" = number
