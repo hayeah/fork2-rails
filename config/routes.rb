@@ -66,7 +66,7 @@ Fork::Application.routes.draw do
       end
     end
 
-    get "status" , to: "status#index"
+    get "status/users" , to: "status#users"
   end
 
   root "main#root"
