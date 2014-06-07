@@ -8,12 +8,18 @@ $colors:  #48a26d, // level 1, too simple
 					#d398ac, // level 4,hard
 					#b35373; // level 5,too hard
 
+$block_width:20px;
+$block_height:30px;
+$multi_checked_color: #f4cb27;
+$multi_checked_shadow_color: gray;
+$multi_checked_font_size: 0.7em;
 
-@mixin lesson {
-	.lesson{
 
-		height: 50px;
-		width: 20px;
+@mixin days {
+	.day{
+
+		height: $block_height;
+		width: $block_width;
 		background-color: blue;
 		display: inline-block;
 		margin-right: 10px;
@@ -45,8 +51,8 @@ h1{
 	.legend-wrapper{
 		width:70%;
 		margin: 0px 0 0 30%;
-		@include lesson;
-		.lesson{
+		@include days;
+		.day{
 			width:12%;
 			height:20px;
 		}
@@ -75,14 +81,32 @@ h1{
 		}
 	}
 
-	.user-courses{
+	.user-timeline{
 
 		margin-left: 50px;
 
-		@include lesson;
+		@include days;
 
-		.lesson{
-			padding-top:15px;
+		.day{
+
+			&.multi-checked{
+				box-shadow: 5px 5px 5px $multi_checked_shadow_color;
+				background-color: $multi_checked_color;
+				font-size: $multi_checked_font_size;
+
+				@for $i from 1 through length($colors) {
+					span.difficulty-#{$i}{
+						color: nth($colors,$i);
+					}
+				}
+
+			}
+		}
+
+		.blank{
+			display: inline-block;
+			width: 50px;
+			height: $block_height;
 		}
 
 		p.finish{
@@ -97,25 +121,6 @@ h1{
 			}
 		}
 	}
-
-	.user-timeline{
-
-		margin-top: 20px;
-		margin-left: 50px;
-
-		.day{
-			width:10px;
-			height:20px;
-			display: inline-block;
-			background-color:gray;
-			margin-right: 10px;
-
-			&.checked{
-				background-color: #3062bb;
-			}
-		}
-	}
-
 }
 
 
