@@ -9,20 +9,23 @@ $colors:  #48a26d, // level 1, too simple
 					#b35373; // level 5,too hard
 
 $block_width:20px;
-$block_height:30px;
+$block_height:20px;
+$lesson_id_font_size:0.8em;
+$multi_checked_font_size: 1.2em;
 $multi_checked_color: #f4cb27;
 $multi_checked_shadow_color: gray;
-$multi_checked_font_size: 0.7em;
 
 
 @mixin days {
 	.day{
 
+		font-size:$lesson_id_font_size;
 		height: $block_height;
 		width: $block_width;
 		background-color: blue;
 		display: inline-block;
 		margin-right: 10px;
+		margin-bottom: 10px;
 		text-align: center;
 		box-sizing: border-box;
 		vertical-align: bottom;
@@ -92,7 +95,20 @@ h1{
 			&.multi-checked{
 				box-shadow: 5px 5px 5px $multi_checked_shadow_color;
 				background-color: $multi_checked_color;
-				font-size: $multi_checked_font_size;
+				z-index: 0;
+
+				.multi-lessons{
+					position: relative;
+					opacity: 0;
+					background-color: black;
+					z-index: 1;
+					font-size: $multi_checked_font_size;
+
+					&:hover{
+						opacity: 1;
+					}
+				}
+
 
 				@for $i from 1 through length($colors) {
 					span.difficulty-#{$i}{
