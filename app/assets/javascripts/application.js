@@ -17,3 +17,4 @@
 //= require bootstrap/dist/js/bootstrap
 
 //= require ghostdown.js
+//= require admin/users.js

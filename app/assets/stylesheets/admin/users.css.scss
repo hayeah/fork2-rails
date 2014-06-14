@@ -1,0 +1,142 @@
+// Place all the styles related to the admin::status controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$colors:  #48a26d, // level 1, too simple
+					#a8dbbd, // level 2,simple
+					#53b5b2, // level 3,normal
+					#d398ac, // level 4,hard
+					#b35373; // level 5,too hard
+
+$block_width:20px;
+$block_height:20px;
+$lesson_id_font_size:0.8em;
+$multi_checked_font_size: 1.2em;
+$multi_checked_color: #f4cb27;
+$multi_checked_shadow_color: gray;
+
+
+@mixin days {
+	.day{
+
+		font-size:$lesson_id_font_size;
+		height: $block_height;
+		width: $block_width;
+		background-color: blue;
+		display: inline-block;
+		margin-right: 10px;
+		margin-bottom: 10px;
+		text-align: center;
+		box-sizing: border-box;
+		vertical-align: bottom;
+
+		&.difficulty-undone{
+			background-color: #aaa;
+		}
+
+		@for $i from 1 through length($colors) {
+			&.difficulty-#{$i}{
+				background-color: nth($colors,$i);
+			}
+		}
+	}
+}
+
+
+h1{
+	text-align: center;
+}
+
+.legend{
+
+	margin: 50px 0;
+
+	.legend-wrapper{
+		width:70%;
+		margin: 0px 0 0 30%;
+		@include days;
+		.day{
+			width:12%;
+			height:20px;
+		}
+		p{
+			margin-bottom: 0;
+			display: inline-block;
+			font-size: 16px;
+			width:12%;
+		}
+	}
+}
+
+.item{
+
+	margin-bottom:20px;
+
+	p.user-info{
+		.user-name{
+			color:#a9de06;
+			padding-right: 20px;
+		}
+
+		.user-email{
+			color:#d1ae94;
+			padding-right:20px;
+		}
+	}
+
+	.user-timeline{
+
+		margin-left: 50px;
+
+		@include days;
+
+		.day{
+
+			&.multi-checked{
+				box-shadow: 5px 5px 5px $multi_checked_shadow_color;
+				background-color: $multi_checked_color;
+				z-index: 0;
+
+				.multi-lessons{
+					position: relative;
+					opacity: 0;
+					background-color: black;
+					z-index: 1;
+					font-size: $multi_checked_font_size;
+
+					&:hover{
+						opacity: 1;
+					}
+				}
+
+
+				@for $i from 1 through length($colors) {
+					span.difficulty-#{$i}{
+						color: nth($colors,$i);
+					}
+				}
+
+			}
+		}
+
+		.blank{
+			display: inline-block;
+			width: 50px;
+			height: $block_height;
+		}
+
+		p.finish{
+			display: inline-block;
+			height:100%;
+			width:150px;
+			padding-right:20px;
+
+			span.percentage{
+				color:#d2608a;
+				font-size: 1.3em;
+			}
+		}
+	}
+}
+
+
