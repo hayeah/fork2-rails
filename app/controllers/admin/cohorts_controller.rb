@@ -55,7 +55,7 @@ class Admin::CohortsController < AdminController
     redirect_to url_for(["admin",cohort])
   end
 
-  # json: email, email, github_id
+  # json: name, email, github_id
   def update_users
     records = JSON.parse(params[:cohort][:cohort_users_json])
 
@@ -78,13 +78,26 @@ class Admin::CohortsController < AdminController
   end
 
   def link_discourse_users
-    users = cohort.users.with_no_discourse
-    users.each do |user|
-      user.link_discourse_user! rescue nil
+    records = JSON.parse(params[:cohort][:discourse_users_json])
+    # json: email, github_id, username
+    errors = []
+    records.each do |record|
+      user = User.find_by(email: record["email"].downcase) || User.find_by(github_id: record["github_id"].downcase)
+      next if user.nil?
+      user.discourse_username = record["username"]
+      user.save
     end
-
     redirect_to url_for(["admin",cohort])
   end
+
+  # def link_discourse_users
+  #   users = cohort.users.with_no_discourse
+  #   users.each do |user|
+  #     user.link_discourse_user! rescue nil
+  #   end
+
+  #   redirect_to url_for(["admin",cohort])
+  # end
 
   private
 
